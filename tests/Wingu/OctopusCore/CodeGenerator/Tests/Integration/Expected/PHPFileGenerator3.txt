@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * Shortfile description
+ *
+ * Long file description.
+ * On multiple lines.
+ *
+ * @author Wingu
+ */
+
+namespace myObjects\classes {
+
+    class class3_1 {
+
+    }
+}
+
+namespace myObjects\classes {
+
+    class class3_2 {
+
+    }
+}
+
+namespace myObjects\interfaces {
+
+    interface interface3_1 {
+
+    }
+}
+
+namespace myNS\subNS3 {
+
+    require_once ('r1');
+    require_once ('r2');
+
+    use use1;
+    use use2 as use2_alias;
+
+?>
+<?php
+
+$var3 = 1;
+}

@@ -1,0 +1,36 @@
+array(
+        1,
+        2,
+        3.14,
+        -4,
+        5.01,
+        false,
+        'bool' => true,
+        'string',
+        'my "string"',
+        SORT_ASC,
+        null,
+        'key' => 'value',
+        '"key"' => 'value',
+        '\'key\'' => 'value',
+        array(
+            1,
+            2,
+            3.14,
+            -4,
+            5.01,
+            false,
+            'bool' => true,
+            'string',
+            'my "string"',
+            SORT_ASC,
+            null,
+            'key' => 'value',
+            '"key"' => 'value',
+            '\'key\'' => 'value'
+        ),
+        'sub' => array('sub2' => array(
+                'sub3' => 3,
+                'sub4' => 4
+            ))
+    )

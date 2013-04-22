@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Shortfile description
+ *
+ * Long file description.
+ * On multiple lines.
+ *
+ * @author Wingu
+ */
+
+namespace myNS\subNS4;
+
+class class4_1 {
+
+}
+
+interface interface4_1 {
+
+}

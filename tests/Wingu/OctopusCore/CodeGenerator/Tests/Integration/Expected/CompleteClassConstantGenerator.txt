@@ -1,0 +1,9 @@
+/**
+ * Short constant description.
+ *
+ * Long description.
+ * On multiple lines.
+ *
+ * @var string
+ */
+const MY_CONST = 'it\'s a string';

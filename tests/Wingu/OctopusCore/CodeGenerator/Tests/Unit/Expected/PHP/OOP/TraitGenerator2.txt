@@ -1,0 +1,6 @@
+namespace myNamespace {
+
+    trait t2 {
+
+    }
+}

@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * Shortfile description
+ *
+ * Long file description.
+ * On multiple lines.
+ *
+ * @author Wingu
+ */
+
+namespace myNS\subNS;
+
+require_once ('r1');
+require_once ('r2');
+
+use use1;
+use use2 as use2_alias;
+
+$var = 1;

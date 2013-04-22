@@ -1,0 +1,9 @@
+/**
+ * Short property description.
+ *
+ * Long description.
+ * On multiple lines.
+ *
+ * @var array
+ */
+protected static $array = array(1, null, 'string');

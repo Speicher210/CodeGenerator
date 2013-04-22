@@ -1,0 +1,35 @@
+{
+    "name":"wingu/code-generator",
+    "description":"Wingu OctopusCore CoreGenerator",
+    "version":"1.0.0.0",
+    "type":"library",
+    "keywords":[
+        "php code generator",
+        "code generator",
+        "generator",
+        "generation"
+    ],
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Dragos Protung",
+            "email":"dragos.protung@speicher210.com",
+            "role":"Developer"
+        },
+        {
+            "name":"Antoine Verger",
+            "email":"antoine.verger@speicher210.com",
+            "role":"Developer"
+        }
+    ],
+    "require":{
+        "php":">=5.4",
+        "wingu/reflection":"1.*"
+    },
+    "autoload":{
+        "psr-0":{
+            "Wingu\\OctopusCore\\CodeGenerator\\":"src/",
+    		"Wingu\\OctopusCore\\CodeGenerator\\Tests":"tests/"
+    	}
+    }
+}

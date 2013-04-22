@@ -1,0 +1,6 @@
+namespace myNamespace {
+
+    interface i2 extends ie1, ie2 {
+
+    }
+}

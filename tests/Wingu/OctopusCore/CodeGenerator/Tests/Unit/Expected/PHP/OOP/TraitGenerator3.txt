@@ -1,0 +1,38 @@
+namespace myNamespace {
+
+    /**
+     * My description
+     */
+    trait t3 {
+
+        use MyTrait1;
+
+        use MyTrait2 {
+            func as funcalias;
+        }
+
+        public $property1 = 1;
+
+        /**
+         * My property.
+         *
+         * @var string
+         */
+        protected $property2 = 'mystring';
+
+        /**
+         * My function 1.
+         *
+         * My long description.
+         *
+         * @param array $param1 The param 1.
+         * @param string $param2 The param 2.
+         * @return mixed
+         */
+        public function myFunction1(array $param1 = array(1, null, 'string'), $param2 = null) {
+        }
+
+        public static function simple() {
+        }
+    }
+}

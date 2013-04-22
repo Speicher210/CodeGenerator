@@ -1,0 +1,5 @@
+ * @param string $p1 Some param 1.
+ * @param string $p2 Some param 2.
+ * @param string $p3 Some param 3.
+ * @return boolean
+ * @throw Exception Some exception.

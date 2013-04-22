@@ -1,0 +1,29 @@
+namespace myNamespace {
+
+    /**
+     * My description
+     */
+    interface i3 extends \othernamespace\ie1, ie2 {
+
+        /**
+         * My const.
+         *
+         * @var bolean
+         */
+        const MY_CONST = true;
+
+        /**
+         * My function 1.
+         *
+         * My long description.
+         *
+         * @param array $param1 The param 1.
+         * @param string $param2 The param 2.
+         * @return mixed
+         */
+        public function myFunction1(array $param1 = array(1, null, 'string'), $param2 = null);
+
+        public static function simple();
+
+    }
+}
