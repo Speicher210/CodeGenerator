@@ -12,21 +12,18 @@
 namespace myObjects\classes {
 
     class class3_1 {
-
     }
 }
 
 namespace myObjects\classes {
 
     class class3_2 {
-
     }
 }
 
 namespace myObjects\interfaces {
 
     interface interface3_1 {
-
     }
 }
 

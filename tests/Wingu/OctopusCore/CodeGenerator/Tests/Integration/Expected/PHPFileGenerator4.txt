@@ -12,9 +12,7 @@
 namespace myNS\subNS4;
 
 class class4_1 {
-
 }
 
 interface interface4_1 {
-
 }

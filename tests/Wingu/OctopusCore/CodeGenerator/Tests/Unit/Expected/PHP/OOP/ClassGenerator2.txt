@@ -1,6 +1,5 @@
 namespace myNamespace {
 
     abstract class c2 implements ie1, ie2 {
-
     }
 }

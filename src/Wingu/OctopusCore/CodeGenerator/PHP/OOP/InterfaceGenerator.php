@@ -158,10 +158,11 @@ class InterfaceGenerator extends AbstractObject {
         }
 
         $code[] = $line . ' {';
-        $code[] = null;
+
+        $interfaceElements = array();
 
         // Interface constants.
-        $code = array_merge($code, $this->generateConstantsLines());
+        $interfaceElements = $this->generateConstantsLines();
 
         // Interface methods.
         foreach ($this->methods as $method) {
@@ -174,11 +175,16 @@ class InterfaceGenerator extends AbstractObject {
 
             $doc = $method->generateDocumentation();
             if ($doc !== null) {
-                $code[] = $doc;
+                $interfaceElements[] = $doc;
             }
 
-            $code[] = $method->generateSignature() . ';';
-            $code[] = null;
+            $interfaceElements[] = $method->generateSignature() . ';';
+            $interfaceElements[] = null;
+        }
+
+        if (count($interfaceElements) > 0) {
+        	$code[] = null;
+        	$code = array_merge($code, $interfaceElements);
         }
 
         $code[] = $indentation . '}';

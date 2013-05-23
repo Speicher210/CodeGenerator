@@ -19,11 +19,9 @@ use use2 as use2_alias;
 use classUse as classUseAlias;
 
 class class2_1 {
-
 }
 
 interface interface2_1 {
-
 }
 
 ?>

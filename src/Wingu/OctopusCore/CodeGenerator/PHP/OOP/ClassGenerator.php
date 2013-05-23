@@ -236,22 +236,27 @@ class ClassGenerator extends AbstractObject {
         }
 
         $code[] = $line . ' {';
-        $code[] = null;
+        $classElements = array();
 
         // Class uses.
-        $code = array_merge($code, $this->generateTraitUsesLines());
+        $classElements = $this->generateTraitUsesLines();
 
         // Class constants.
-        $code = array_merge($code, $this->generateConstantsLines());
+        $classElements = array_merge($classElements, $this->generateConstantsLines());
 
         // Class properties.
-        $code = array_merge($code, $this->generatePropertiesLines());
+        $classElements = array_merge($classElements, $this->generatePropertiesLines());
 
         // Class methods.
         $methods = $this->generateMethodsLines();
         // Remove last empty line.
         array_pop($methods);
-        $code = array_merge($code, $methods);
+        $classElements = array_merge($classElements, $methods);
+
+        if (count($classElements) > 0) {
+        	$code[] = null;
+        	$code = array_merge($code, $classElements);
+        }
 
         $code[] = $indentation . '}';
 
