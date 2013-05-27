@@ -62,6 +62,21 @@ trait ObjectMethodsTrait {
     }
 
     /**
+     * Get a method definition.
+     *
+     * @param string $name The name of the method to get.
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\MethodGenerator
+     * @throws InvalidArgumentException If the method is not found.
+     */
+    public function getMethod($name) {
+        if ($this->hasMethod($name) === true) {
+            return $this->methods[$name];
+        } else {
+            throw new InvalidArgumentException('Method "'.$name.'" is not defined.');
+        }
+    }
+
+    /**
      * Check if a method exists.
      *
      * @param string $name The name of the method to check.

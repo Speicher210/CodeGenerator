@@ -12,7 +12,7 @@ class ObjectMethodsTraitTest extends TestCase {
     	return $method;
     }
 
-    public function testSetConstants() {
+    public function testSetMethods() {
     	$mock = $this->getObjectForTrait('Wingu\OctopusCore\CodeGenerator\PHP\OOP\ObjectMethodsTrait');
     	$methods = array();
     	for ($i = 0; $i < 5; $i++) {
@@ -29,9 +29,27 @@ class ObjectMethodsTraitTest extends TestCase {
     /**
      * @expectedException Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException
      */
-    public function testAddConstantTwice() {
+    public function testAddMethodTwice() {
     	$mock = $this->getObjectForTrait('Wingu\OctopusCore\CodeGenerator\PHP\OOP\ObjectMethodsTrait');
     	$mock->addMethod($this->getMethodMock('same'));
     	$mock->addMethod($this->getMethodMock('same'));
+    }
+
+    public function testGetExistingMethod() {
+        $mock = $this->getObjectForTrait('Wingu\OctopusCore\CodeGenerator\PHP\OOP\ObjectMethodsTrait');
+        $actual = $this->getMethodMock('ExistingMethod');
+
+        $mock->addMethod($actual);
+        $expected = $mock->getMethod('methodExistingMethod');
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @expectedException Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException
+     */
+    public function testGetNonExistingMethod() {
+        $mock = $this->getObjectForTrait('Wingu\OctopusCore\CodeGenerator\PHP\OOP\ObjectMethodsTrait');
+        $mock->addMethod($this->getMethodMock('NonExistingMethod'));
+        $mock->getMethod('methodExistingMethod');
     }
 }
