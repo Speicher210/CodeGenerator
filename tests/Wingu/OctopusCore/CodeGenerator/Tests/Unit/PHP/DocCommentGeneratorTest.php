@@ -134,4 +134,12 @@ class DocCommentGeneratorTest extends TestCase {
     	$this->assertSame('myTag', $tags[0]->getTagName());
     	$this->assertSame('my description', $tags[0]->getDescription());
     }
+
+    public function testRemoveTagsByName() {
+        $docCommentGenerator = new DocCommentGenerator();
+        $ag = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\AnnotationGenerator');
+        $ag->expects($this->once())->method('removeTagsByName')->with('tagName');
+        $this->setProperty($docCommentGenerator, 'annotationGenerator', $ag);
+        $docCommentGenerator->removeAnnotationTagsByName('tagName');
+    }
 }

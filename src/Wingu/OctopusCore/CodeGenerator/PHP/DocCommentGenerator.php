@@ -29,7 +29,7 @@ class DocCommentGenerator extends PHPGenerator {
     /**
      * The annotation generator.
      *
-     * @var Wingu\OctopusCore\CodeGenerator\PHP\Annotation\AnnotationGenerator
+     * @var \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\AnnotationGenerator
      */
     protected $annotationGenerator;
 
@@ -132,6 +132,15 @@ class DocCommentGenerator extends PHPGenerator {
      */
     public function getAnnotationTags() {
         return $this->annotationGenerator->getTags();
+    }
+
+    /**
+     * Remove all tags that have a specific name.
+     *
+     * @param string $tagName The name of the tag.
+     */
+    public function removeAnnotationTagsByName($tagName) {
+        $this->annotationGenerator->removeTagsByName($tagName);
     }
 
     /**
