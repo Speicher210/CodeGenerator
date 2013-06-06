@@ -66,6 +66,17 @@ class AnnotationGenerator extends AbstractGenerator {
     }
 
     /**
+     * Remove all tags that have a specific name.
+     *
+     * @param string $tagName The name of the tag.
+     */
+    public function removeTagsByName($tagName) {
+        $this->tags = array_filter($this->tags, function(TagInterface $tag) use ($tagName) {
+            return $tag->getTagName() !== $tagName;
+        });
+    }
+
+    /**
      * Generate the code.
      *
      * @return string

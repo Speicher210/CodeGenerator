@@ -119,4 +119,33 @@ class AnnotationGeneratorTest extends TestCase {
     	$this->assertSame($expectedResultIndent, $ag->generate());
     }
 
+    protected function getTagMockForRemoveTagsTest($tagName) {
+        $mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
+        $mock->expects($this->any())
+            ->method('getTagName')
+            ->will($this->returnValue($tagName));
+        return $mock;
+    }
+
+    public function testRemoveTagsByName() {
+        $ag = new AnnotationGenerator();
+
+        $remainingTags = $removingTags =array();
+        $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag1');
+        $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag1');
+        $removingTags[] = $this->getTagMockForRemoveTagsTest('tag2');
+        $removingTags[] = $this->getTagMockForRemoveTagsTest('tag2');
+        $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag3');
+        $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag3');
+
+        $ag->addTags($remainingTags);
+        $ag->addTags($removingTags);
+
+        $ag->removeTagsByName('tag2');
+        $this->assertSame($remainingTags, $ag->getTags());
+
+        $ag->removeTagsByName('tag1');
+        $ag->removeTagsByName('tag3');
+        $this->assertSame(array(), $ag->getTags());
+    }
 }
