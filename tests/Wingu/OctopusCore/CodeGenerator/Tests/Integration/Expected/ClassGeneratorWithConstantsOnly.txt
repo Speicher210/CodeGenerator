@@ -1,0 +1,9 @@
+namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
+
+    class MyClass {
+
+        const MY_CONST1 = null;
+
+        const MY_CONST2 = 'it\'s a string';
+    }
+}

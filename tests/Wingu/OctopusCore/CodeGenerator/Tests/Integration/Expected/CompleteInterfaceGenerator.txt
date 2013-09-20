@@ -45,6 +45,5 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
          * @throws \InvalidArgumentException If the date is in the past.
          */
         public static function publicStaticFunction(\DateTime $datetime);
-
     }
 }

@@ -24,6 +24,5 @@ namespace myNamespace {
         public function myFunction1(array $param1 = array(1, null, 'string'), $param2 = null);
 
         public static function simple();
-
     }
 }

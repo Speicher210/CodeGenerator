@@ -185,6 +185,8 @@ class InterfaceGenerator extends AbstractObject {
         if (count($interfaceElements) > 0) {
         	$code[] = null;
         	$code = array_merge($code, $interfaceElements);
+        	// Remove last empty line.
+        	array_pop($code);
         }
 
         $code[] = $indentation . '}';

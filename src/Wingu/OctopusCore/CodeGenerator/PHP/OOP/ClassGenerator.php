@@ -248,14 +248,13 @@ class ClassGenerator extends AbstractObject {
         $classElements = array_merge($classElements, $this->generatePropertiesLines());
 
         // Class methods.
-        $methods = $this->generateMethodsLines();
-        // Remove last empty line.
-        array_pop($methods);
-        $classElements = array_merge($classElements, $methods);
+        $classElements = array_merge($classElements, $this->generateMethodsLines());
 
         if (count($classElements) > 0) {
         	$code[] = null;
         	$code = array_merge($code, $classElements);
+        	// Remove last empty line.
+            array_pop($code);
         }
 
         $code[] = $indentation . '}';

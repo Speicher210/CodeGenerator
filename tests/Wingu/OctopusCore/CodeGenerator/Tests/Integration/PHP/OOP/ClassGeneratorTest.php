@@ -21,6 +21,17 @@ use Wingu\OctopusCore\Reflection\ReflectionClass;
 
 class ClassGeneratorTest extends TestCase {
 
+    public function testClassGeneratorWithConstantsOnly() {
+        $cg = new ClassGenerator('MyClass', 'Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures');
+
+        $constants = array();
+        $constants[] = new ClassConstantGenerator('MY_CONST1', null);
+        $constants[] = new ClassConstantGenerator('MY_CONST2', "it's a string");
+        $cg->setConstants($constants);
+
+        $this->assertSame(file_get_contents(dirname(__DIR__).'/../Expected/ClassGeneratorWithConstantsOnly.txt'), $cg->generate());
+    }
+
     public function testCompleteClassGenerator() {
         $cg = new ClassGenerator('MyClass', 'Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures');
         $cg->setFinal(true);

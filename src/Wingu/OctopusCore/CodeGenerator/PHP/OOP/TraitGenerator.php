@@ -105,14 +105,13 @@ class TraitGenerator extends AbstractObject {
         $traitElements = array_merge($traitElements, $this->generatePropertiesLines());
 
         // Class methods.
-        $methods = $this->generateMethodsLines();
-        // Remove last empty line.
-        array_pop($methods);
-        $traitElements = array_merge($traitElements, $methods);
+        $traitElements = array_merge($traitElements, $this->generateMethodsLines());
 
         if (count($traitElements) > 0) {
             $code[] = null;
             $code = array_merge($code, $traitElements);
+            // Remove last empty line.
+            array_pop($code);
         }
 
         $code[] = $indentation . '}';
