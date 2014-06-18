@@ -5,17 +5,18 @@ namespace Wingu\OctopusCore\CodeGenerator;
 /**
  * Abstract implementation of a code generator.
  */
-abstract class AbstractGenerator implements GeneratorInterface {
+abstract class AbstractGenerator implements GeneratorInterface
+{
 
     /**
-     * Current identation string to use.
+     * Current indentation string to use.
      *
      * @var string
      */
     protected $indentationString = self::INDENTATION_STRING_SPACE;
 
     /**
-     * Current identation level.
+     * Current indentation level.
      *
      * @var integer
      */
@@ -34,7 +35,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      * @param string $value The indentation string.
      * @return \Wingu\OctopusCore\CodeGenerator\GeneratorInterface
      */
-    public function setIndentationString($value) {
+    public function setIndentationString($value)
+    {
         $this->indentationString = $value;
         return $this;
     }
@@ -44,7 +46,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      *
      * @return string
      */
-    public function getIndentationString() {
+    public function getIndentationString()
+    {
         return $this->indentationString;
     }
 
@@ -55,23 +58,25 @@ abstract class AbstractGenerator implements GeneratorInterface {
      * @return \Wingu\OctopusCore\CodeGenerator\GeneratorInterface
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the value is invalid.
      */
-    public function setIndentationLevel($value) {
+    public function setIndentationLevel($value)
+    {
         if ($value < 0) {
-            throw new Exceptions\InvalidArgumentException('The identation level can not be negtive.');
+            throw new Exceptions\InvalidArgumentException('The indentation level can not be negative.');
         }
 
-        $this->indentationLevel = (int) $value;
+        $this->indentationLevel = (int)$value;
         return $this;
     }
 
     /**
      * Add an indentation level on the current level.
      *
-     * @param iteger $value The identation level.
+     * @param integer $value The indentation level.
      * @return \Wingu\OctopusCore\CodeGenerator\GeneratorInterface
      */
-    public function addIndentationLevel($value) {
-        $this->indentationLevel = max(0, $this->indentationLevel + (int) $value);
+    public function addIndentationLevel($value)
+    {
+        $this->indentationLevel = max(0, $this->indentationLevel + (int)$value);
         return $this;
     }
 
@@ -80,7 +85,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      *
      * @return integer
      */
-    public function getIndentationLevel() {
+    public function getIndentationLevel()
+    {
         return $this->indentationLevel;
     }
 
@@ -89,7 +95,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      *
      * @return string
      */
-    protected function getIndentation() {
+    protected function getIndentation()
+    {
         return str_repeat($this->indentationString, $this->indentationLevel);
     }
 
@@ -99,7 +106,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      * @param string $lineFeed The line feed.
      * @return \Wingu\OctopusCore\CodeGenerator\GeneratorInterface
      */
-    public function setLineFeed($lineFeed) {
+    public function setLineFeed($lineFeed)
+    {
         $this->lineFeed = $lineFeed;
         return $this;
     }
@@ -109,7 +117,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      *
      * @return string
      */
-    public function getLineFeed() {
+    public function getLineFeed()
+    {
         return $this->lineFeed;
     }
 
@@ -118,7 +127,8 @@ abstract class AbstractGenerator implements GeneratorInterface {
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->generate();
     }
 }

@@ -2,17 +2,19 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\PHP\OOP;
 
-use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 use Wingu\OctopusCore\CodeGenerator\Tests\Unit\Expected\PHP\OOP\ModifiersStaticMock;
+use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 
-class ModifiersStaticTraitTest extends TestCase {
+class ModifiersStaticTraitTest extends TestCase
+{
 
-    public function testSetStatic() {
-    	$mock = new ModifiersStaticMock();
-    	$mock->setStatic(false);
-    	$this->assertFalse($mock->isStatic());
+    public function testSetStatic()
+    {
+        $mock = new ModifiersStaticMock();
+        $mock->setStatic(false);
+        $this->assertFalse($mock->isStatic());
 
-    	$mock->setStatic(true);
-    	$this->assertTrue($mock->isStatic());
+        $mock->setStatic(true);
+        $this->assertTrue($mock->isStatic());
     }
 }

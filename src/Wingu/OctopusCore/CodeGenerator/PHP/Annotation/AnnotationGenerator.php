@@ -8,7 +8,8 @@ use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface;
 /**
  * Documentation annotation generator.
  */
-class AnnotationGenerator extends AbstractGenerator {
+class AnnotationGenerator extends AbstractGenerator
+{
 
     /**
      * Array of tags.
@@ -22,7 +23,8 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[] $tags The annotations to add.
      */
-    public function __construct(array $tags = array()) {
+    public function __construct(array $tags = array())
+    {
         $this->addTags($tags);
     }
 
@@ -31,7 +33,8 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[] $tags The annotations tags to set.
      */
-    public function setTags(array $tags) {
+    public function setTags(array $tags)
+    {
         $this->tags = array();
         $this->addTags($tags);
     }
@@ -41,7 +44,8 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[] $tags The annotations tags to add.
      */
-    public function addTags(array $tags) {
+    public function addTags(array $tags)
+    {
         foreach ($tags as $tag) {
             $this->addTag($tag);
         }
@@ -52,7 +56,8 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface $tag The annotation tag to add.
      */
-    public function addTag(TagInterface $tag) {
+    public function addTag(TagInterface $tag)
+    {
         $this->tags[] = $tag;
     }
 
@@ -61,7 +66,8 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[]
      */
-    public function getTags() {
+    public function getTags()
+    {
         return $this->tags;
     }
 
@@ -70,10 +76,14 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @param string $tagName The name of the tag.
      */
-    public function removeTagsByName($tagName) {
-        $this->tags = array_filter($this->tags, function(TagInterface $tag) use ($tagName) {
-            return $tag->getTagName() !== $tagName;
-        });
+    public function removeTagsByName($tagName)
+    {
+        $this->tags = array_filter(
+            $this->tags,
+            function (TagInterface $tag) use ($tagName) {
+                return $tag->getTagName() !== $tagName;
+            }
+        );
     }
 
     /**
@@ -81,12 +91,13 @@ class AnnotationGenerator extends AbstractGenerator {
      *
      * @return string
      */
-    public function generate() {
-        $identation = $this->getIndentation();
+    public function generate()
+    {
+        $indentation = $this->getIndentation();
 
         $code = array();
         foreach ($this->tags as $tag) {
-            $code[] = $identation . ' * ' . trim($tag->generate());
+            $code[] = $indentation . ' * ' . trim($tag->generate());
         }
 
         return implode($this->getLineFeed(), $code);

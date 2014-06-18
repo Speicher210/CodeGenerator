@@ -8,7 +8,8 @@ use Wingu\OctopusCore\CodeGenerator\PHP\OOP\AbstractObject;
 /**
  * Class to generate PHP files.
  */
-class FileGenerator extends PHPGenerator {
+class FileGenerator extends PHPGenerator
+{
 
     use FileGeneratorTrait;
     use DocCommentTrait;
@@ -41,7 +42,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @param string $filename The name of the file.
      */
-    public function __construct($filename) {
+    public function __construct($filename)
+    {
         $this->setFilename($filename);
     }
 
@@ -51,7 +53,8 @@ class FileGenerator extends PHPGenerator {
      * @param array $requiredFiles The required files.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function setRequiredFiles(array $requiredFiles) {
+    public function setRequiredFiles(array $requiredFiles)
+    {
         $this->requiredFiles = $requiredFiles;
         return $this;
     }
@@ -62,18 +65,20 @@ class FileGenerator extends PHPGenerator {
      * @param array $requiredFiles The required files to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addRequiredFiles(array $requiredFiles = array()) {
+    public function addRequiredFiles(array $requiredFiles = array())
+    {
         $this->requiredFiles = array_merge($this->requiredFiles, $requiredFiles);
         return $this;
     }
 
     /**
-     * Add a reuired file.
+     * Add a required file.
      *
      * @param string $requiredFile The required file to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addRequiredFile($requiredFile) {
+    public function addRequiredFile($requiredFile)
+    {
         $this->requiredFiles[] = $requiredFile;
         return $this;
     }
@@ -83,7 +88,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @return array
      */
-    public function getRequiredFiles() {
+    public function getRequiredFiles()
+    {
         return $this->requiredFiles;
     }
 
@@ -93,7 +99,8 @@ class FileGenerator extends PHPGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\AbstractObject[] $objects The objects to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function setObjects(array $objects) {
+    public function setObjects(array $objects)
+    {
         $this->objects = array();
         return $this->addObjects($objects);
     }
@@ -104,7 +111,8 @@ class FileGenerator extends PHPGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\AbstractObject[] $objects The objects to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addObjects(array $objects) {
+    public function addObjects(array $objects)
+    {
         foreach ($objects as $object) {
             $this->addObject($object);
         }
@@ -118,7 +126,8 @@ class FileGenerator extends PHPGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\AbstractObject $object The object to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addObject(AbstractObject $object) {
+    public function addObject(AbstractObject $object)
+    {
         $this->objects[] = $object;
         return $this;
     }
@@ -128,7 +137,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\AbstractObject[]
      */
-    public function getObjects() {
+    public function getObjects()
+    {
         return $this->objects;
     }
 
@@ -138,7 +148,8 @@ class FileGenerator extends PHPGenerator {
      * @param string $body The body.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function setExtraBody($body) {
+    public function setExtraBody($body)
+    {
         $this->extraBody = $body;
         return $this;
     }
@@ -148,7 +159,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getExtraBody() {
+    public function getExtraBody()
+    {
         return $this->extraBody;
     }
 
@@ -157,11 +169,12 @@ class FileGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         $body = $this->getExtraBody();
-        $bodyHasopenTag = preg_match('#(?:\s*)<\?php#', $body);
+        $bodyHasOpenTag = preg_match('#(?:\s*)<\?php#', $body);
         $code[] = '<?php';
         $code[] = null;
 
@@ -192,7 +205,7 @@ class FileGenerator extends PHPGenerator {
 
             $code = array_merge($code, $this->renderUsesLines());
 
-            if ($bodyHasopenTag > 0) {
+            if ($bodyHasOpenTag > 0) {
                 $code[] = '?>';
             }
 
@@ -216,7 +229,7 @@ class FileGenerator extends PHPGenerator {
 
             $code = array_merge($code, $this->renderObjects(false));
 
-            if ($bodyHasopenTag > 0) {
+            if ($bodyHasOpenTag > 0) {
                 $code[] = '?>';
             }
 
@@ -235,7 +248,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @return boolean
      */
-    private function areMultipleNamespacesInFile() {
+    private function areMultipleNamespacesInFile()
+    {
         if (count($this->objects) === 0) {
             return false;
         }
@@ -264,7 +278,8 @@ class FileGenerator extends PHPGenerator {
      *
      * @return array
      */
-    private function renderRequiredFilesLines() {
+    private function renderRequiredFilesLines()
+    {
         $code = array();
         $indentation = $this->getIndentation();
         foreach ($this->requiredFiles as $requiredFile) {
@@ -284,7 +299,8 @@ class FileGenerator extends PHPGenerator {
      * @param boolean $withNamespace Flag if the objects should also be rendered with the namespace.
      * @return array
      */
-    private function renderObjects($withNamespace) {
+    private function renderObjects($withNamespace)
+    {
         $code = array();
         foreach ($this->getObjects() as $object) {
             $originalUses = $object->getUses();

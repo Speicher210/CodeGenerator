@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP;
 /**
  * Trait that provides a way to set a documentation comment to an object that will be generated.
  */
-trait DocCommentTrait {
+trait DocCommentTrait
+{
 
     /**
      * The documentation generator.
@@ -19,7 +20,8 @@ trait DocCommentTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator $documentation The documentation to set.
      */
-    public function setDocumentation(DocCommentGenerator $documentation) {
+    public function setDocumentation(DocCommentGenerator $documentation)
+    {
         $this->documentation = $documentation;
     }
 
@@ -28,7 +30,8 @@ trait DocCommentTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator
      */
-    public function getDocumentation() {
+    public function getDocumentation()
+    {
         return $this->documentation;
     }
 
@@ -37,7 +40,8 @@ trait DocCommentTrait {
      *
      * @return string
      */
-    public function generateDocumentation() {
+    public function generateDocumentation()
+    {
         if ($this->documentation !== null) {
             $this->documentation->setIndentationString($this->getIndentationString());
             $this->documentation->setIndentationLevel($this->getIndentationLevel());

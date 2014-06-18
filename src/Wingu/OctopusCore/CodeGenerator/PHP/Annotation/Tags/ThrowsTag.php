@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags;
 /**
  * Documentation annotation "throws" tag generator.
  */
-class ThrowsTag extends BaseTag {
+class ThrowsTag extends BaseTag
+{
 
     /**
      * The exception thrown.
@@ -27,7 +28,8 @@ class ThrowsTag extends BaseTag {
      * @param string $exception The exception thrown.
      * @param string $description The exception description / detail.
      */
-    public function __construct($exception, $description = null) {
+    public function __construct($exception, $description = null)
+    {
         $this->exception = $exception;
         $this->throwsDescription = $description;
         parent::__construct('throws');
@@ -38,7 +40,8 @@ class ThrowsTag extends BaseTag {
      *
      * @return string
      */
-    protected function generateDescriptionPart() {
+    protected function generateDescriptionPart()
+    {
         return trim($this->exception . ' ' . $this->throwsDescription);
     }
 }

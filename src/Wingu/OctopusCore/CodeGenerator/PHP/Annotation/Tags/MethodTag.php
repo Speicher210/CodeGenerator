@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags;
 /**
  * Documentation annotation "method" tag generator.
  */
-class MethodTag extends BaseTag {
+class MethodTag extends BaseTag
+{
 
     /**
      * The name of the method.
@@ -35,7 +36,8 @@ class MethodTag extends BaseTag {
      * @param string $methodReturn The type of the return of the method.
      * @param string $methodDescription The method description.
      */
-    public function __construct($methodName, $methodReturn = null, $methodDescription = null) {
+    public function __construct($methodName, $methodReturn = null, $methodDescription = null)
+    {
         parent::__construct('method');
 
         $this->setMethodName($methodName);
@@ -47,9 +49,10 @@ class MethodTag extends BaseTag {
      * Set the name of the method.
      *
      * @param string $methodName The name of the method.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\Method
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\MethodTag
      */
-    public function setMethodName($methodName) {
+    public function setMethodName($methodName)
+    {
         $this->methodName = $methodName;
         return $this;
     }
@@ -59,7 +62,8 @@ class MethodTag extends BaseTag {
      *
      * @return string
      */
-    public function getMethodName() {
+    public function getMethodName()
+    {
         return $this->methodName;
     }
 
@@ -67,9 +71,10 @@ class MethodTag extends BaseTag {
      * Set the method return type.
      *
      * @param string $return The return type.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\Method
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\MethodTag
      */
-    public function setMethodReturn($return) {
+    public function setMethodReturn($return)
+    {
         if (trim((string)$return) === '') {
             $return = 'void';
         }
@@ -83,7 +88,8 @@ class MethodTag extends BaseTag {
      *
      * @return string
      */
-    public function getMethodReturn() {
+    public function getMethodReturn()
+    {
         return $this->methodReturn;
     }
 
@@ -91,9 +97,10 @@ class MethodTag extends BaseTag {
      * Set the method description.
      *
      * @param string $description The method description.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\Method
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\MethodTag
      */
-    public function setMethodDescription($description) {
+    public function setMethodDescription($description)
+    {
         $this->methodDescription = $description;
         return $this;
     }
@@ -103,7 +110,8 @@ class MethodTag extends BaseTag {
      *
      * @return string
      */
-    public function getMethodDescription() {
+    public function getMethodDescription()
+    {
         return $this->methodDescription;
     }
 
@@ -112,7 +120,8 @@ class MethodTag extends BaseTag {
      *
      * @return string
      */
-    protected function generateDescriptionPart() {
+    protected function generateDescriptionPart()
+    {
         return $this->getMethodReturn() . ' ' . $this->getMethodName() . ' ' . $this->getMethodDescription();
     }
 }

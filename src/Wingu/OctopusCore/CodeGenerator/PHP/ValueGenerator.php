@@ -2,10 +2,11 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP;
 
-use Wingu\OctopusCore\CodeGenerator\Expression;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException;
+use Wingu\OctopusCore\CodeGenerator\Expression;
 
-class ValueGenerator extends PHPGenerator {
+class ValueGenerator extends PHPGenerator
+{
 
     const TYPE_AUTO = 'auto';
 
@@ -63,9 +64,10 @@ class ValueGenerator extends PHPGenerator {
      *
      * @param mixed $value The value.
      * @param string $type The value type.
-     * @param stringn $outputMode The output mode.
+     * @param string $outputMode The output mode.
      */
-    public function __construct($value = null, $type = self::TYPE_AUTO, $outputMode = self::OUTPUT_MULTI_LINE) {
+    public function __construct($value = null, $type = self::TYPE_AUTO, $outputMode = self::OUTPUT_MULTI_LINE)
+    {
         $this->setValue($value);
         $this->setType($type);
         $this->setOutputMode($outputMode);
@@ -76,7 +78,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @param mixed $value The value to set.
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         $this->value = $value;
     }
 
@@ -85,7 +88,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @return mixed
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 
@@ -95,7 +99,8 @@ class ValueGenerator extends PHPGenerator {
      * @param string $type The type of the value.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->type = $type;
         return $this;
     }
@@ -105,7 +110,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -115,7 +121,8 @@ class ValueGenerator extends PHPGenerator {
      * @param string $outputMode The output mode.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator
      */
-    public function setOutputMode($outputMode) {
+    public function setOutputMode($outputMode)
+    {
         $this->outputMode = ($outputMode === self::OUTPUT_MULTI_LINE) ? self::OUTPUT_MULTI_LINE : self::OUTPUT_SINGLE_LINE;
         return $this;
     }
@@ -125,7 +132,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getOutputMode() {
+    public function getOutputMode()
+    {
         return $this->outputMode;
     }
 
@@ -134,7 +142,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @return boolean
      */
-    public function isValidConstantType() {
+    public function isValidConstantType()
+    {
         if ($this->type === self::TYPE_AUTO) {
             $type = $this->determineType($this->value);
         } else {
@@ -142,7 +151,17 @@ class ValueGenerator extends PHPGenerator {
         }
 
         // Valid types for constants.
-        $scalarTypes = [self::TYPE_BOOLEAN, self::TYPE_NUMBER, self::TYPE_INTEGER, self::TYPE_FLOAT, self::TYPE_DOUBLE, self::TYPE_STRING, self::TYPE_CONSTANT, self::TYPE_NULL, self::TYPE_EXPRESSION];
+        $scalarTypes = [
+            self::TYPE_BOOLEAN,
+            self::TYPE_NUMBER,
+            self::TYPE_INTEGER,
+            self::TYPE_FLOAT,
+            self::TYPE_DOUBLE,
+            self::TYPE_STRING,
+            self::TYPE_CONSTANT,
+            self::TYPE_NULL,
+            self::TYPE_EXPRESSION
+        ];
 
         return in_array($type, $scalarTypes);
     }
@@ -153,7 +172,8 @@ class ValueGenerator extends PHPGenerator {
      * @param mixed $value The value from witch to determine the type.
      * @return string
      */
-    protected function determineType($value) {
+    protected function determineType($value)
+    {
         if ($value instanceof Expression || $value instanceof ValueGenerator) {
             return self::TYPE_EXPRESSION;
         }
@@ -167,7 +187,6 @@ class ValueGenerator extends PHPGenerator {
                 return self::TYPE_STRING;
             case 'double':
             case 'float':
-            case 'integer':
                 return self::TYPE_NUMBER;
             case 'array':
                 return self::TYPE_ARRAY;
@@ -186,8 +205,9 @@ class ValueGenerator extends PHPGenerator {
      * @param string $value The string to escape.
      * @param boolean $quote If the string should be quoted or not.
      */
-    public function escapeStringValue($value, $quote = true) {
-        $output = addcslashes((string) $value, "'");
+    public function escapeStringValue($value, $quote = true)
+    {
+        $output = addcslashes((string)$value, "'");
         if ($quote === true) {
             $output = "'" . $output . "'";
         }
@@ -201,7 +221,8 @@ class ValueGenerator extends PHPGenerator {
      * @return string
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException If the type of the value is not valid.
      */
-    public function generate() {
+    public function generate()
+    {
         $type = $this->type;
         $value = $this->value;
 
@@ -215,7 +236,7 @@ class ValueGenerator extends PHPGenerator {
                 $code .= 'null';
                 break;
             case self::TYPE_BOOLEAN:
-                $code .= ((bool) $value === true) ? 'true' : 'false';
+                $code .= ((bool)$value === true) ? 'true' : 'false';
                 break;
             case self::TYPE_NUMBER:
             case self::TYPE_INTEGER:
@@ -223,7 +244,7 @@ class ValueGenerator extends PHPGenerator {
             case self::TYPE_DOUBLE:
             case self::TYPE_CONSTANT:
             case self::TYPE_EXPRESSION:
-                $code .= (string) $value;
+                $code .= (string)$value;
                 break;
             case self::TYPE_STRING:
                 $code .= $this->escapeStringValue($value);
@@ -245,7 +266,8 @@ class ValueGenerator extends PHPGenerator {
      *
      * @param array $value The value to prepare.
      */
-    protected function prepareArrayValue(array $value) {
+    protected function prepareArrayValue(array $value)
+    {
         $rii = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($value), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($rii as $key => $value) {
             if (($value instanceof ValueGenerator) === false) {
@@ -265,13 +287,15 @@ class ValueGenerator extends PHPGenerator {
      * @param array $value The value to generate.
      * @return string
      */
-    protected function generateArrayValue(array $value) {
+    protected function generateArrayValue(array $value)
+    {
         $value = $this->prepareArrayValue($value);
         $outputMode = count($value) > 1 ? $this->outputMode : self::OUTPUT_SINGLE_LINE;
 
         $code = 'array(';
         if ($outputMode === self::OUTPUT_MULTI_LINE) {
-            $code .= $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString() . $this->getIndentationString();
+            $code .= $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString(
+                ) . $this->getIndentationString();
         }
 
         $outputParts = array();
@@ -289,7 +313,8 @@ class ValueGenerator extends PHPGenerator {
         }
 
         if ($outputMode === self::OUTPUT_MULTI_LINE) {
-            $padding = $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString() . $this->getIndentationString();
+            $padding = $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString(
+                ) . $this->getIndentationString();
         } else {
             $padding = ' ';
         }

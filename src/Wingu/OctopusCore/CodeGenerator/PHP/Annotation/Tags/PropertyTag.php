@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags;
 /**
  * Documentation annotation "property" tag generator.
  */
-class PropertyTag extends BaseTag {
+class PropertyTag extends BaseTag
+{
 
     const ACCESS_FULL = 'property';
 
@@ -35,7 +36,8 @@ class PropertyTag extends BaseTag {
      * @param string $propertyDescription The description for the property.
      * @param string $access The property access.
      */
-    public function __construct($propertyType, $propertyName, $propertyDescription = null, $access = self::ACCESS_FULL) {
+    public function __construct($propertyType, $propertyName, $propertyDescription = null, $access = self::ACCESS_FULL)
+    {
         parent::__construct('property', $propertyDescription);
 
         $this->setType($propertyType);
@@ -48,7 +50,8 @@ class PropertyTag extends BaseTag {
      *
      * @param string $type The type of the parameter.
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         $this->propertyType = $type;
     }
 
@@ -57,7 +60,8 @@ class PropertyTag extends BaseTag {
      *
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->propertyType;
     }
 
@@ -66,7 +70,8 @@ class PropertyTag extends BaseTag {
      *
      * @param string $name The name of the property.
      */
-    public function setPropertyName($name) {
+    public function setPropertyName($name)
+    {
         $this->propertyName = $name;
     }
 
@@ -75,7 +80,8 @@ class PropertyTag extends BaseTag {
      *
      * @return string
      */
-    public function getPropertyName() {
+    public function getPropertyName()
+    {
         return $this->propertyName;
     }
 
@@ -84,7 +90,8 @@ class PropertyTag extends BaseTag {
      *
      * @param string $access The access.
      */
-    public function setAccess($access = self::ACCESS_FULL) {
+    public function setAccess($access = self::ACCESS_FULL)
+    {
         $this->name = $access;
     }
 
@@ -93,7 +100,8 @@ class PropertyTag extends BaseTag {
      *
      * @return string
      */
-    public function getAccess() {
+    public function getAccess()
+    {
         return $this->name;
     }
 
@@ -102,7 +110,11 @@ class PropertyTag extends BaseTag {
      *
      * @return string
      */
-    public function generate() {
-        return trim('@' . $this->getAccess() . ' ' . $this->getType() . ' $' . $this->getPropertyName() . ' ' . $this->description);
+    public function generate()
+    {
+        return trim(
+            '@' . $this->getAccess() . ' ' . $this->getType() . ' $' . $this->getPropertyName(
+            ) . ' ' . $this->description
+        );
     }
 }

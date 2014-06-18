@@ -8,7 +8,8 @@ use Wingu\OctopusCore\Reflection\Annotation\Tags\TagInterface as ReflectionTagIn
 /**
  * Documentation annotation base tag generator.
  */
-class BaseTag extends AbstractGenerator implements TagInterface {
+class BaseTag extends AbstractGenerator implements TagInterface
+{
 
     /**
      * The annotation tag name.
@@ -30,7 +31,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      * @param string $name The annotation tag name.
      * @param string $description The tag description / detail.
      */
-    public function __construct($name, $description = null) {
+    public function __construct($name, $description = null)
+    {
         $this->name = $name;
         $this->description = $description;
     }
@@ -41,7 +43,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      * @param \Wingu\OctopusCore\Reflection\Annotation\Tags\TagInterface $reflectionTag The tag reflection.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface
      */
-    public static function fromReflection(ReflectionTagInterface $reflectionTag) {
+    public static function fromReflection(ReflectionTagInterface $reflectionTag)
+    {
         return new static($reflectionTag->getTagName(), $reflectionTag->getDescription());
     }
 
@@ -50,7 +53,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      *
      * @return string
      */
-    public function getTagName() {
+    public function getTagName()
+    {
         return $this->name;
     }
 
@@ -59,7 +63,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      *
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -68,7 +73,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      *
      * @return string
      */
-    protected function generateDescriptionPart() {
+    protected function generateDescriptionPart()
+    {
         return $this->description;
     }
 
@@ -77,7 +83,8 @@ class BaseTag extends AbstractGenerator implements TagInterface {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         return trim('@' . $this->name . ' ' . $this->generateDescriptionPart());
     }
 }

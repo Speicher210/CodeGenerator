@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Trait to deal with modifiers.
  */
-trait ModifiersBaseTrait {
+trait ModifiersBaseTrait
+{
 
     /**
      * The modifiers applied to the member.
@@ -19,7 +20,8 @@ trait ModifiersBaseTrait {
      *
      * @param integer|array $modifiers The modifiers to set.
      */
-    protected function setModifiers($modifiers) {
+    protected function setModifiers($modifiers)
+    {
         if (is_array($modifiers) === true) {
             $modifiersArray = $modifiers;
             $modifiers = Modifiers::MODIFIER_NONE;
@@ -36,7 +38,8 @@ trait ModifiersBaseTrait {
      *
      * @param integer $modifier The modifier to add.
      */
-    protected function addModifier($modifier) {
+    protected function addModifier($modifier)
+    {
         $this->setModifiers($this->modifiers | $modifier);
     }
 
@@ -45,7 +48,8 @@ trait ModifiersBaseTrait {
      *
      * @param integer $modifier The modifier to remove.
      */
-    protected function removeModifier($modifier) {
+    protected function removeModifier($modifier)
+    {
         $this->setModifiers($this->modifiers & ~$modifier);
     }
 }

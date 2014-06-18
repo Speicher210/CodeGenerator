@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
 /**
  * Trait for entities that have a body.
  */
-trait BodyTrait {
+trait BodyTrait
+{
 
     /**
      * The body as an array of lines.
@@ -22,7 +23,8 @@ trait BodyTrait {
      * @param string $body The body to set.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
      */
-    public function setBody($body) {
+    public function setBody($body)
+    {
         $this->body = array(new CodeLineGenerator($body));
         return $this;
     }
@@ -33,7 +35,8 @@ trait BodyTrait {
      * @param CodeLineGenerator $line The line to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
      */
-    public function addBodyLine(CodeLineGenerator $line) {
+    public function addBodyLine(CodeLineGenerator $line)
+    {
         $this->body[] = $line;
         return $this;
     }
@@ -43,7 +46,8 @@ trait BodyTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
      */
-    public function addEmptyBodyLine() {
+    public function addEmptyBodyLine()
+    {
         $this->body[] = new CodeLineGenerator();
         return $this;
     }
@@ -53,7 +57,8 @@ trait BodyTrait {
      *
      * @return string
      */
-    public function generateBody() {
+    public function generateBody()
+    {
         if (count($this->body) === 0) {
             return '{' . $this->getLineFeed() . $this->getIndentation() . '}';
         } else {

@@ -5,17 +5,18 @@ namespace Wingu\OctopusCore\CodeGenerator;
 /**
  * Interface for all code generators.
  */
-interface GeneratorInterface {
+interface GeneratorInterface
+{
 
     /**
-     * The identation string as a [tab].
+     * The indentation string as a [tab].
      *
      * @var string
      */
     const INDENTATION_STRING_TAB = "\t";
 
     /**
-     * The identation string as a space (4 spaces).
+     * The indentation string as a space (4 spaces).
      *
      * @var string
      */
@@ -69,7 +70,7 @@ interface GeneratorInterface {
     /**
      * Add an indentation level on the current level.
      *
-     * @param iteger $value The identation level.
+     * @param integer $value The indentation level.
      * @return \Wingu\OctopusCore\CodeGenerator\GeneratorInterface
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the value is invalid.
      */

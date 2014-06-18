@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Interface that holds only constants for modifiers.
  */
-interface Modifiers {
+interface Modifiers
+{
 
     /**
      * No modifier value.

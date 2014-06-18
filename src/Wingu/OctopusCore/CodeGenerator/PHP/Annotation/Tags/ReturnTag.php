@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags;
 /**
  * Documentation annotation "return" tag generator.
  */
-class ReturnTag extends BaseTag {
+class ReturnTag extends BaseTag
+{
 
     /**
      * The type of the return value.
@@ -20,7 +21,8 @@ class ReturnTag extends BaseTag {
      * @param string $returnType The type of the return value.
      * @param string $description The return description / detail.
      */
-    public function __construct($returnType, $description = null) {
+    public function __construct($returnType, $description = null)
+    {
         $this->returnType = $returnType;
         parent::__construct('return', $description);
     }
@@ -30,7 +32,8 @@ class ReturnTag extends BaseTag {
      *
      * @return string
      */
-    protected function generateDescriptionPart() {
+    protected function generateDescriptionPart()
+    {
         return trim($this->returnType . ' ' . $this->description);
     }
 }

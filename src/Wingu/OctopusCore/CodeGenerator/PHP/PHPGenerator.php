@@ -5,9 +5,10 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP;
 use Wingu\OctopusCore\CodeGenerator\AbstractGenerator;
 
 /**
- * Abstract class for all PHP releated code generators.
+ * Abstract class for all PHP related code generators.
  */
-abstract class PHPGenerator extends AbstractGenerator {
+abstract class PHPGenerator extends AbstractGenerator
+{
 
     /**
      * Regular expression for a valid entity name.
@@ -29,7 +30,8 @@ abstract class PHPGenerator extends AbstractGenerator {
      * @param string $namespace The namespace to validate.
      * @return boolean
      */
-    protected function isNamespaceValid($namespace) {
+    protected function isNamespaceValid($namespace)
+    {
         if ($namespace === '\\') {
             return true;
         }
@@ -55,7 +57,8 @@ abstract class PHPGenerator extends AbstractGenerator {
      * @param string $name The name of the object to check.
      * @return boolean
      */
-    protected function isObjectNameValid($name) {
+    protected function isObjectNameValid($name)
+    {
         return $this->isNamespaceValid($name);
     }
 
@@ -65,7 +68,8 @@ abstract class PHPGenerator extends AbstractGenerator {
      * @param string $name The name to check.
      * @return boolean
      */
-    protected function isEntityNameValid($name) {
+    protected function isEntityNameValid($name)
+    {
         if (is_string($name) === false) {
             return false;
         }

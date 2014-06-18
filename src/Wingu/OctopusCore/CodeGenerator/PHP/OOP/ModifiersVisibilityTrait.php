@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 /**
  * Trait to deal with visibility modifiers.
  */
-trait ModifiersVisibilityTrait {
+trait ModifiersVisibilityTrait
+{
 
     /**
      * Set the visibility of the entity.
@@ -15,7 +16,8 @@ trait ModifiersVisibilityTrait {
      * @param string $visibility The visibility to set.
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the visibility is invalid.
      */
-    public function setVisibility($visibility) {
+    public function setVisibility($visibility)
+    {
         switch ($visibility) {
             case Modifiers::VISIBILITY_PUBLIC:
                 $this->removeModifier(Modifiers::MODIFIER_PRIVATE | Modifiers::MODIFIER_PROTECTED);
@@ -39,7 +41,8 @@ trait ModifiersVisibilityTrait {
      *
      * @return string
      */
-    public function getVisibility() {
+    public function getVisibility()
+    {
         if (($this->modifiers & Modifiers::MODIFIER_PRIVATE) !== 0) {
             return Modifiers::VISIBILITY_PRIVATE;
         } elseif (($this->modifiers & Modifiers::MODIFIER_PROTECTED) !== 0) {

@@ -3,13 +3,14 @@
 namespace Wingu\OctopusCore\CodeGenerator\HTML;
 
 use Wingu\OctopusCore\CodeGenerator\AbstractGenerator;
-use Wingu\OctopusCore\CodeGenerator\FileGeneratorTrait;
 use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
+use Wingu\OctopusCore\CodeGenerator\FileGeneratorTrait;
 
 /**
  * Class to generate HTML files.
  */
-class FileGenerator extends AbstractGenerator {
+class FileGenerator extends AbstractGenerator
+{
 
     use FileGeneratorTrait;
 
@@ -25,7 +26,8 @@ class FileGenerator extends AbstractGenerator {
      *
      * @param string $filename The name of the file.
      */
-    public function __construct($filename) {
+    public function __construct($filename)
+    {
         $this->setFilename($filename);
     }
 
@@ -35,7 +37,8 @@ class FileGenerator extends AbstractGenerator {
      * @param string $body The body.
      * @return \Wingu\OctopusCore\CodeGenerator\HTML\FileGenerator
      */
-    public function setBody($body) {
+    public function setBody($body)
+    {
         $this->code = array(new CodeLineGenerator($body, $this->getIndentationLevel(), $this->getIndentationString()));
         return $this;
     }
@@ -46,7 +49,8 @@ class FileGenerator extends AbstractGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\CodeLineGenerator $line The line of code to add.
      * @return \Wingu\OctopusCore\CodeGenerator\HTML\FileGenerator
      */
-    public function addBodyLine(CodeLineGenerator $line) {
+    public function addBodyLine(CodeLineGenerator $line)
+    {
         $this->code[] = $line;
         return $this;
     }
@@ -56,7 +60,8 @@ class FileGenerator extends AbstractGenerator {
      *
      * @return string
      */
-    public function getBody() {
+    public function getBody()
+    {
         return implode($this->getLineFeed(), $this->code);
     }
 
@@ -65,7 +70,8 @@ class FileGenerator extends AbstractGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         return $this->getBody();
     }
 }

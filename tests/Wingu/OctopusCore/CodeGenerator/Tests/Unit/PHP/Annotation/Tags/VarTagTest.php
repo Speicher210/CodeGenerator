@@ -2,15 +2,23 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\PHP\Annotation\Tags;
 
-use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\VarTag;
+use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 
-class VarTagTest extends TestCase {
+class VarTagTest extends TestCase
+{
 
-    public function getDataForAnnotationDefinition() {
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function getDataForAnnotationDefinition()
+    {
         return array(
             ['string', '@var string'],
-            ['', '@var'], [' ', '@var'],
+            ['', '@var'],
+            [' ', '@var'],
             [' array ', '@var array'],
             ['\DateTime ', '@var \DateTime'],
         );
@@ -19,10 +27,11 @@ class VarTagTest extends TestCase {
     /**
      * @dataProvider getDataForAnnotationDefinition
      */
-    public function testVarTagGeneration($name, $expected) {
-    	$varTag = new VarTag($name, $expected);
+    public function testVarTagGeneration($name, $expected)
+    {
+        $varTag = new VarTag($name, $expected);
 
-    	$this->assertSame($expected, $varTag->generate());
-    	$this->assertSame($expected, (string)$varTag);
+        $this->assertSame($expected, $varTag->generate());
+        $this->assertSame($expected, (string)$varTag);
     }
 }

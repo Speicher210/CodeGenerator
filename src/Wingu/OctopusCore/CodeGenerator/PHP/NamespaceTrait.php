@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 /**
  * Trait for entities that have can have a namespace.
  */
-trait NamespaceTrait {
+trait NamespaceTrait
+{
 
     /**
      * The namespace.
@@ -20,9 +21,10 @@ trait NamespaceTrait {
      * Set the namespace name.
      *
      * @param string $namespace The name of the namespace.
-     * @throws Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the namespace is invalid.
+     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the namespace is invalid.
      */
-    public function setNamespace($namespace) {
+    public function setNamespace($namespace)
+    {
         if ($namespace === null || $namespace === '' || $namespace === '\\') {
             $this->namespace = null;
             return;
@@ -44,16 +46,19 @@ trait NamespaceTrait {
      *
      * @return string
      */
-    public function getNamespace() {
+    public function getNamespace()
+    {
         return $this->namespace;
     }
 
     /**
      * Extract the namespace from the a fully qualified name.
      *
+     * @param string $name The name from which to extract.
      * @return string
      */
-    public static function extractNamespaceFromQualifiedName($name) {
+    public static function extractNamespaceFromQualifiedName($name)
+    {
         if (($pos = strrpos($name, '\\')) !== false) {
             return substr($name, 0, $pos);
         } else {

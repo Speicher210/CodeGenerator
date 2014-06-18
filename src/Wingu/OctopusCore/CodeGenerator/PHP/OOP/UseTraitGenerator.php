@@ -2,14 +2,15 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
+use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 use Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator;
 use Wingu\OctopusCore\Reflection\ReflectionClassUse;
-use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 
 /**
  * A class to generate the "use" of traits in an object.
  */
-class UseTraitGenerator extends PHPGenerator {
+class UseTraitGenerator extends PHPGenerator
+{
 
     /**
      * The trait.
@@ -31,7 +32,8 @@ class UseTraitGenerator extends PHPGenerator {
      * @param string $traitClass The trait name to use.
      * @param array $conflictsResolutions Array where each item is a conflict resolution.
      */
-    public function __construct($traitClass, array $conflictsResolutions = array()) {
+    public function __construct($traitClass, array $conflictsResolutions = array())
+    {
         $this->setTraitClass($traitClass);
         $this->setConflictsResolutions($conflictsResolutions);
     }
@@ -42,7 +44,8 @@ class UseTraitGenerator extends PHPGenerator {
      * @param ReflectionClassUse $reflectionClassUse The reflection of the use.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator
      */
-    public static function fromReflection(ReflectionClassUse $reflectionClassUse) {
+    public static function fromReflection(ReflectionClassUse $reflectionClassUse)
+    {
         return new static($reflectionClassUse->getName(), $reflectionClassUse->getConflictResolutions());
     }
 
@@ -53,7 +56,8 @@ class UseTraitGenerator extends PHPGenerator {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the use is not valid.
      */
-    public function setTraitClass($traitClass) {
+    public function setTraitClass($traitClass)
+    {
         if ($this->isObjectNameValid($traitClass) !== true) {
             throw new InvalidArgumentException('The name of the trait to use is not valid.');
         }
@@ -68,7 +72,8 @@ class UseTraitGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getTraitClass() {
+    public function getTraitClass()
+    {
         return $this->traitClass;
     }
 
@@ -78,7 +83,8 @@ class UseTraitGenerator extends PHPGenerator {
      * @param array $conflictsResolutions Array where each item is a conflict resolution.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator
      */
-    public function setConflictsResolutions(array $conflictsResolutions) {
+    public function setConflictsResolutions(array $conflictsResolutions)
+    {
         $this->conflictsResolutions = $conflictsResolutions;
         return $this;
     }
@@ -88,13 +94,14 @@ class UseTraitGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $indentation = $this->getIndentation();
 
         $code = $indentation . 'use ' . $this->traitClass;
         if (count($this->conflictsResolutions) > 0) {
-            $conflictIndentation = $indentation.$this->indentationString;
-            $code .= ' {'.$this->lineFeed;
+            $conflictIndentation = $indentation . $this->indentationString;
+            $code .= ' {' . $this->lineFeed;
             foreach ($this->conflictsResolutions as $conflict) {
                 $code .= $conflictIndentation . rtrim($conflict, ';') . ';' . $this->lineFeed;
             }

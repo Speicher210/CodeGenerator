@@ -2,14 +2,15 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
-use Wingu\OctopusCore\Reflection\ReflectionClass;
-use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
+use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
+use Wingu\OctopusCore\Reflection\ReflectionClass;
 
 /**
  * Class to generate a class.
  */
-class ClassGenerator extends AbstractObject {
+class ClassGenerator extends AbstractObject
+{
 
     use ModifiersBaseTrait;
     use ModifiersAbstractTrait;
@@ -39,7 +40,8 @@ class ClassGenerator extends AbstractObject {
      * @param string $name The name of the class.
      * @param string $namespace The namespace for the class.
      */
-    public function __construct($name, $namespace = null) {
+    public function __construct($name, $namespace = null)
+    {
         $this->setName($name);
         $this->setNamespace($namespace);
     }
@@ -48,10 +50,11 @@ class ClassGenerator extends AbstractObject {
      * Create a new class from reflection.
      *
      * @param \Wingu\OctopusCore\Reflection\ReflectionClass $reflectionClass The reflection of the class.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\ClassGenerator
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the reflected class is a trait or interface.
      */
-    public static function fromReflection(ReflectionClass $reflectionClass) {
+    public static function fromReflection(ReflectionClass $reflectionClass)
+    {
         if ($reflectionClass->isInterface() === true || $reflectionClass->isTrait() === true) {
             throw new InvalidArgumentException('The reflected class can not be a trait or interface.');
         }
@@ -91,7 +94,7 @@ class ClassGenerator extends AbstractObject {
         foreach ($reflectionClass->getUses() as $use) {
             $use = UseTraitGenerator::fromReflection($use);
             if ($cg->getNamespace() !== null && strpos($use->getTraitClass(), $cg->getNamespace()) === 0) {
-                $use->setTraitClass(substr($use->getTraitClass(), strlen($cg->getNamespace())+1));
+                $use->setTraitClass(substr($use->getTraitClass(), strlen($cg->getNamespace()) + 1));
             }
 
             $cg->addTraitUse($use);
@@ -122,7 +125,8 @@ class ClassGenerator extends AbstractObject {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the name is not valid.
      */
-    public function setExtends($extends) {
+    public function setExtends($extends)
+    {
         if ($extends !== null && $this->isObjectNameValid($extends) !== true) {
             throw new InvalidArgumentException('The name of the extended class is not valid.');
         }
@@ -137,7 +141,8 @@ class ClassGenerator extends AbstractObject {
      *
      * @return string
      */
-    public function getExtends() {
+    public function getExtends()
+    {
         return $this->extends;
     }
 
@@ -148,7 +153,8 @@ class ClassGenerator extends AbstractObject {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the name is not valid.
      */
-    public function addImplement($interfaceName) {
+    public function addImplement($interfaceName)
+    {
         if ($this->isObjectNameValid($interfaceName) !== true) {
             throw new InvalidArgumentException('The name of the interface is not valid.');
         }
@@ -164,7 +170,8 @@ class ClassGenerator extends AbstractObject {
      * @param array $interfacesNames The name of the interfaces that are implemented.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassGenerator
      */
-    public function addImplements(array $interfacesNames) {
+    public function addImplements(array $interfacesNames)
+    {
         foreach ($interfacesNames as $interfaceName) {
             $this->addImplement($interfaceName);
         }
@@ -178,7 +185,8 @@ class ClassGenerator extends AbstractObject {
      * @param array $interfacesNames The name of the interfaces that are implemented.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassGenerator
      */
-    public function setImplements(array $interfacesNames) {
+    public function setImplements(array $interfacesNames)
+    {
         $this->implements = array();
         $this->addImplements($interfacesNames);
         return $this;
@@ -189,7 +197,8 @@ class ClassGenerator extends AbstractObject {
      *
      * @return array
      */
-    public function getImplements() {
+    public function getImplements()
+    {
         return $this->implements;
     }
 
@@ -198,7 +207,8 @@ class ClassGenerator extends AbstractObject {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         if ($this->namespace !== null) {
@@ -236,7 +246,6 @@ class ClassGenerator extends AbstractObject {
         }
 
         $code[] = $line . ' {';
-        $classElements = array();
 
         // Class uses.
         $classElements = $this->generateTraitUsesLines();
@@ -251,9 +260,9 @@ class ClassGenerator extends AbstractObject {
         $classElements = array_merge($classElements, $this->generateMethodsLines());
 
         if (count($classElements) > 0) {
-        	$code[] = null;
-        	$code = array_merge($code, $classElements);
-        	// Remove last empty line.
+            $code[] = null;
+            $code = array_merge($code, $classElements);
+            // Remove last empty line.
             array_pop($code);
         }
 

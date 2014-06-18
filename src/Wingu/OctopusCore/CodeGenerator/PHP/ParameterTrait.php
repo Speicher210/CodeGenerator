@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 /**
  * Trait for entities that have parameters (functions, methods).
  */
-trait ParameterTrait {
+trait ParameterTrait
+{
 
     /**
      * The parameters the entity has.
@@ -21,9 +22,10 @@ trait ParameterTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator[] $parameters The Parameters to set.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
-     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is allready added.
+     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is already added.
      */
-    public function setParameters(array $parameters) {
+    public function setParameters(array $parameters)
+    {
         $this->parameters = array();
         $this->addParameters($parameters);
         return $this;
@@ -34,9 +36,10 @@ trait ParameterTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator[] $parameters The Parameters to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
-     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is allready added.
+     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is already added.
      */
-    public function addParameters(array $parameters) {
+    public function addParameters(array $parameters)
+    {
         foreach ($parameters as $param) {
             $this->addParameter($param);
         }
@@ -49,9 +52,10 @@ trait ParameterTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator $parameter The parameter to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\PHPGenerator
-     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is allready added.
+     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the a parameter with the same name is already added.
      */
-    public function addParameter(ParameterGenerator $parameter) {
+    public function addParameter(ParameterGenerator $parameter)
+    {
         $name = $parameter->getName();
         if (isset($this->parameters[$name]) === true) {
             throw new InvalidArgumentException('A parameter with the name "' . $name . '" is already added.');
@@ -66,7 +70,8 @@ trait ParameterTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator[]
      */
-    public function getParameters() {
+    public function getParameters()
+    {
         return $this->parameters;
     }
 }

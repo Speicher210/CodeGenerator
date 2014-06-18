@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags;
 /**
  * Documentation annotation "param" tag generator.
  */
-class ParamTag extends BaseTag {
+class ParamTag extends BaseTag
+{
 
     /**
      * The type of the parameter.
@@ -35,7 +36,8 @@ class ParamTag extends BaseTag {
      * @param string $name The name of the parameter.
      * @param string $description The parameter description / detail.
      */
-    public function __construct($type, $name, $description = null) {
+    public function __construct($type, $name, $description = null)
+    {
         $this->setParamType($type);
         $this->paramName = $name;
         $this->paramDescription = $description;
@@ -47,7 +49,8 @@ class ParamTag extends BaseTag {
      *
      * @param string $type the parameter type.
      */
-    public function setParamType($type) {
+    public function setParamType($type)
+    {
         $this->paramType = $type;
     }
 
@@ -56,7 +59,8 @@ class ParamTag extends BaseTag {
      *
      * @return string
      */
-    protected function generateDescriptionPart() {
+    protected function generateDescriptionPart()
+    {
         return trim($this->paramType . ' $' . $this->paramName . ' ' . $this->paramDescription);
     }
 }

@@ -4,10 +4,12 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\Fixtures;
 
 use Wingu\OctopusCore\CodeGenerator\FileGeneratorTrait;
 
-abstract class FileGeneratorTraitMock {
+abstract class FileGeneratorTraitMock
+{
     use FileGeneratorTrait;
 
-    public function __construct($filename) {
+    public function __construct($filename)
+    {
         $this->setFilename($filename);
     }
 

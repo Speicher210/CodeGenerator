@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator;
 /**
  * Class that holds one line of code.
  */
-class CodeLineGenerator extends AbstractGenerator {
+class CodeLineGenerator extends AbstractGenerator
+{
 
     /**
      * The line of code.
@@ -21,7 +22,8 @@ class CodeLineGenerator extends AbstractGenerator {
      * @param integer $indentationLevel The current indentation level.
      * @param integer $indentationString The current indentation string.
      */
-    public function __construct($codeLine = '', $indentationLevel = null, $indentationString = null) {
+    public function __construct($codeLine = '', $indentationLevel = null, $indentationString = null)
+    {
         $this->codeLine = rtrim($codeLine);
 
         if ($indentationLevel !== null) {
@@ -38,7 +40,8 @@ class CodeLineGenerator extends AbstractGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         return $this->getIndentation() . $this->codeLine;
     }
 }

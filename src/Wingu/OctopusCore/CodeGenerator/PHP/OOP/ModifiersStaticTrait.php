@@ -5,14 +5,16 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Trait to deal with modifiers for object members (properties, methods, etc).
  */
-trait ModifiersStaticTrait {
+trait ModifiersStaticTrait
+{
 
     /**
      * Set the entity static.
      *
      * @param boolean $static Flag if the entity is static or not.
      */
-    public function setStatic($static) {
+    public function setStatic($static)
+    {
         if ($static === true) {
             $this->addModifier(Modifiers::MODIFIER_STATIC);
         } else {
@@ -25,7 +27,8 @@ trait ModifiersStaticTrait {
      *
      * @return boolean
      */
-    public function isStatic() {
-        return (bool) ($this->modifiers & Modifiers::MODIFIER_STATIC);
+    public function isStatic()
+    {
+        return (bool)($this->modifiers & Modifiers::MODIFIER_STATIC);
     }
 }

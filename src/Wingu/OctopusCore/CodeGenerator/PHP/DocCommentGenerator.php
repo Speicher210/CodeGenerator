@@ -3,14 +3,15 @@
 namespace Wingu\OctopusCore\CodeGenerator\PHP;
 
 use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\AnnotationGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\BaseTag;
 use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface;
 use Wingu\OctopusCore\Reflection\ReflectionDocComment;
-use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\BaseTag;
 
 /**
  * Class for generating a documentation comment.
  */
-class DocCommentGenerator extends PHPGenerator {
+class DocCommentGenerator extends PHPGenerator
+{
 
     /**
      * The short description.
@@ -40,7 +41,8 @@ class DocCommentGenerator extends PHPGenerator {
      * @param string $longDescription The long description.
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[] $annotationTags The annotation tags to add.
      */
-    public function __construct($shortDescription = null, $longDescription = null, array $annotationTags = array()) {
+    public function __construct($shortDescription = null, $longDescription = null, array $annotationTags = array())
+    {
         $this->setShortDescription($shortDescription);
         $this->setLongDescription($longDescription);
 
@@ -53,13 +55,15 @@ class DocCommentGenerator extends PHPGenerator {
      * @param \Wingu\OctopusCore\Reflection\ReflectionDocComment $reflectionDocComment The documentation comment reflection.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator
      */
-    public static function fromReflection(ReflectionDocComment $reflectionDocComment) {
+    public static function fromReflection(ReflectionDocComment $reflectionDocComment)
+    {
         $annotations = array();
         foreach ($reflectionDocComment->getAnnotationsCollection()->getAnnotations() as $reflectionTag) {
             $annotations[] = BaseTag::fromReflection($reflectionTag);
         }
 
-        return new static($reflectionDocComment->getShortDescription(), $reflectionDocComment->getLongDescription(), $annotations);
+        return new static($reflectionDocComment->getShortDescription(), $reflectionDocComment->getLongDescription(
+        ), $annotations);
     }
 
     /**
@@ -68,7 +72,8 @@ class DocCommentGenerator extends PHPGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface $tag The tag to add.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator
      */
-    public function addAnnotationTag(TagInterface $tag) {
+    public function addAnnotationTag(TagInterface $tag)
+    {
         $this->annotationGenerator->addTag($tag);
         return $this;
     }
@@ -79,7 +84,8 @@ class DocCommentGenerator extends PHPGenerator {
      * @param string $description The short description.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator
      */
-    public function setShortDescription($description) {
+    public function setShortDescription($description)
+    {
         $description = trim($description);
         if ($description === '') {
             $this->shortDescription = null;
@@ -95,7 +101,8 @@ class DocCommentGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getShortDescription() {
+    public function getShortDescription()
+    {
         return $this->shortDescription;
     }
 
@@ -105,7 +112,8 @@ class DocCommentGenerator extends PHPGenerator {
      * @param string $description The long description.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator
      */
-    public function setLongDescription($description) {
+    public function setLongDescription($description)
+    {
         $description = trim($description);
         if ($description === '') {
             $this->longDescription = null;
@@ -121,7 +129,8 @@ class DocCommentGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function getLongDescription() {
+    public function getLongDescription()
+    {
         return $this->longDescription;
     }
 
@@ -130,7 +139,8 @@ class DocCommentGenerator extends PHPGenerator {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface[]
      */
-    public function getAnnotationTags() {
+    public function getAnnotationTags()
+    {
         return $this->annotationGenerator->getTags();
     }
 
@@ -139,7 +149,8 @@ class DocCommentGenerator extends PHPGenerator {
      *
      * @param string $tagName The name of the tag.
      */
-    public function removeAnnotationTagsByName($tagName) {
+    public function removeAnnotationTagsByName($tagName)
+    {
         $this->annotationGenerator->removeTagsByName($tagName);
     }
 
@@ -148,9 +159,8 @@ class DocCommentGenerator extends PHPGenerator {
      *
      * @return string
      */
-    public function generate() {
-        $lineFeed = $this->getLineFeed();
-
+    public function generate()
+    {
         $indentation = $this->getIndentation();
 
         $docLines = array();

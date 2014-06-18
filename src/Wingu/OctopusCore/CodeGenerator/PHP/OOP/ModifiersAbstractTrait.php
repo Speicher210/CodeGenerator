@@ -5,14 +5,16 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Trait to deal with the "abstract" modifier.
  */
-trait ModifiersAbstractTrait {
+trait ModifiersAbstractTrait
+{
 
     /**
      * Set the entity abstract.
      *
      * @param boolean $abstract Flag if the entity is abstract or not.
      */
-    public function setAbstract($abstract) {
+    public function setAbstract($abstract)
+    {
         if ($abstract === true) {
             $this->addModifier(Modifiers::MODIFIER_ABSTRACT);
         } else {
@@ -25,7 +27,8 @@ trait ModifiersAbstractTrait {
      *
      * @return boolean
      */
-    public function isAbstract() {
-        return (bool) ($this->modifiers & Modifiers::MODIFIER_ABSTRACT);
+    public function isAbstract()
+    {
+        return (bool)($this->modifiers & Modifiers::MODIFIER_ABSTRACT);
     }
 }

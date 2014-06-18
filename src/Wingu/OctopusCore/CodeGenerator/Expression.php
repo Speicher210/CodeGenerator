@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator;
 /**
  * Expression that does not need processing.
  */
-class Expression {
+class Expression
+{
 
     /**
      * The expression.
@@ -19,7 +20,8 @@ class Expression {
      *
      * @param mixed $expression The expression.
      */
-    public function __construct($expression) {
+    public function __construct($expression)
+    {
         $this->expression = $expression;
     }
 
@@ -28,7 +30,8 @@ class Expression {
      *
      * @return mixed
      */
-    public function getExpression() {
+    public function getExpression()
+    {
         return $this->expression;
     }
 
@@ -37,7 +40,8 @@ class Expression {
      *
      * @return string
      */
-    public function __toString() {
-        return (string) $this->expression;
+    public function __toString()
+    {
+        return (string)$this->expression;
     }
 }

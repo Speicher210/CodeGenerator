@@ -2,15 +2,16 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
-use Wingu\OctopusCore\Reflection\ReflectionClass;
-use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException;
+use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
+use Wingu\OctopusCore\Reflection\ReflectionClass;
 
 /**
  * Class to generate an interface.
  */
-class InterfaceGenerator extends AbstractObject {
+class InterfaceGenerator extends AbstractObject
+{
 
     use ObjectConstantsTrait;
     use ObjectMethodsTrait;
@@ -28,7 +29,8 @@ class InterfaceGenerator extends AbstractObject {
      * @param string $name The name of the interface.
      * @param string $namespace The namespace for the class.
      */
-    public function __construct($name, $namespace = null) {
+    public function __construct($name, $namespace = null)
+    {
         $this->setName($name);
         $this->setNamespace($namespace);
     }
@@ -37,10 +39,11 @@ class InterfaceGenerator extends AbstractObject {
      * Create a new interface from reflection.
      *
      * @param \Wingu\OctopusCore\Reflection\ReflectionClass $reflectionClass The reflection of the interface.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\InterfaceGenerator
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\InterfaceGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the reflected class is not an interface.
      */
-    public static function fromReflection(ReflectionClass $reflectionClass) {
+    public static function fromReflection(ReflectionClass $reflectionClass)
+    {
         if ($reflectionClass->isInterface() !== true) {
             throw new InvalidArgumentException('The reflected class must be an interface.');
         }
@@ -80,7 +83,8 @@ class InterfaceGenerator extends AbstractObject {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\InterfaceGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the name is not valid.
      */
-    public function addExtend($interfaceName) {
+    public function addExtend($interfaceName)
+    {
         if ($this->isObjectNameValid($interfaceName) !== true) {
             throw new InvalidArgumentException('The name of the extended interface is not valid.');
         }
@@ -96,7 +100,8 @@ class InterfaceGenerator extends AbstractObject {
      * @param array $interfacesNames The name of the interfaces that are extended.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\InterfaceGenerator
      */
-    public function addExtends(array $interfacesNames) {
+    public function addExtends(array $interfacesNames)
+    {
         foreach ($interfacesNames as $interfaceName) {
             $this->addExtend($interfaceName);
         }
@@ -110,7 +115,8 @@ class InterfaceGenerator extends AbstractObject {
      * @param array $interfacesNames The name of the interfaces that are extended.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\InterfaceGenerator
      */
-    public function setExtends(array $interfacesNames) {
+    public function setExtends(array $interfacesNames)
+    {
         $this->extends = array();
         $this->addExtends($interfacesNames);
 
@@ -122,7 +128,8 @@ class InterfaceGenerator extends AbstractObject {
      *
      * @return array
      */
-    public function getExtends() {
+    public function getExtends()
+    {
         return $this->extends;
     }
 
@@ -132,7 +139,8 @@ class InterfaceGenerator extends AbstractObject {
      * @return string
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException If the methods are not public.
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         if ($this->namespace !== null) {
@@ -159,8 +167,6 @@ class InterfaceGenerator extends AbstractObject {
 
         $code[] = $line . ' {';
 
-        $interfaceElements = array();
-
         // Interface constants.
         $interfaceElements = $this->generateConstantsLines();
 
@@ -183,10 +189,10 @@ class InterfaceGenerator extends AbstractObject {
         }
 
         if (count($interfaceElements) > 0) {
-        	$code[] = null;
-        	$code = array_merge($code, $interfaceElements);
-        	// Remove last empty line.
-        	array_pop($code);
+            $code[] = null;
+            $code = array_merge($code, $interfaceElements);
+            // Remove last empty line.
+            array_pop($code);
         }
 
         $code[] = $indentation . '}';

@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 /**
  * Trait to deal with adding properties generators.
  */
-trait ObjectPropertiesTrait {
+trait ObjectPropertiesTrait
+{
 
     /**
      * Properties.
@@ -20,9 +21,10 @@ trait ObjectPropertiesTrait {
      * Add a property.
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\PropertyGenerator $property The property to add.
-     * @throws Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the property name already exists.
+     * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the property name already exists.
      */
-    public function addProperty(PropertyGenerator $property) {
+    public function addProperty(PropertyGenerator $property)
+    {
         $name = $property->getName();
         if (isset($this->properties[$name]) === true) {
             throw new InvalidArgumentException('Property name "' . $name . '" already added.');
@@ -36,7 +38,8 @@ trait ObjectPropertiesTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\PropertyGenerator[] $properties The properties to add.
      */
-    public function addProperties(array $properties) {
+    public function addProperties(array $properties)
+    {
         foreach ($properties as $property) {
             $this->addProperty($property);
         }
@@ -47,7 +50,8 @@ trait ObjectPropertiesTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\PropertyGenerator[] $properties The properties to set.
      */
-    public function setProperties(array $properties = array()) {
+    public function setProperties(array $properties = array())
+    {
         $this->properties = array();
         $this->addProperties($properties);
     }
@@ -57,7 +61,8 @@ trait ObjectPropertiesTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\PropertyGenerator[]
      */
-    public function getProperties() {
+    public function getProperties()
+    {
         return $this->properties;
     }
 
@@ -67,7 +72,8 @@ trait ObjectPropertiesTrait {
      * @param string $name The name of the property to check.
      * @return boolean
      */
-    public function hasProperty($name) {
+    public function hasProperty($name)
+    {
         return isset($this->properties[$name]);
     }
 
@@ -76,7 +82,8 @@ trait ObjectPropertiesTrait {
      *
      * @return array
      */
-    protected function generatePropertiesLines() {
+    protected function generatePropertiesLines()
+    {
         $code = array();
         foreach ($this->properties as $property) {
             $property->setIndentationString($this->getIndentationString());

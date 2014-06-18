@@ -5,14 +5,16 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Trait to deal with the "final" modifier.
  */
-trait ModifiersFinalTrait {
+trait ModifiersFinalTrait
+{
 
     /**
      * Set the entity "final" modifier.
      *
      * @param boolean $final Flag if the entity is final or not.
      */
-    public function setFinal($final) {
+    public function setFinal($final)
+    {
         if ($final === true) {
             $this->addModifier(Modifiers::MODIFIER_FINAL);
         } else {
@@ -25,7 +27,8 @@ trait ModifiersFinalTrait {
      *
      * @return boolean
      */
-    public function isFinal() {
-        return (bool) ($this->modifiers & Modifiers::MODIFIER_FINAL);
+    public function isFinal()
+    {
+        return (bool)($this->modifiers & Modifiers::MODIFIER_FINAL);
     }
 }

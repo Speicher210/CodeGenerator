@@ -2,7 +2,11 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP;
 
-trait GlobalUseTrait {
+/**
+ * A class to generate the "use" of objects or files.
+ */
+trait GlobalUseTrait
+{
 
     /**
      * The uses in this file.
@@ -21,7 +25,8 @@ trait GlobalUseTrait {
      * @param mixed $uses The uses to set.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function setUses($uses) {
+    public function setUses($uses)
+    {
         $this->uses = array();
         return $this->addUses($uses);
     }
@@ -36,7 +41,8 @@ trait GlobalUseTrait {
      * @param mixed $uses The uses to set.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addUses($uses) {
+    public function addUses($uses)
+    {
         foreach ($uses as $use) {
             if (is_string($use) === true) {
                 $this->addUse($use);
@@ -55,7 +61,8 @@ trait GlobalUseTrait {
      * @param string $alias
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\FileGenerator
      */
-    public function addUse($use, $alias = null) {
+    public function addUse($use, $alias = null)
+    {
         $this->uses[$use] = $alias;
         return $this;
     }
@@ -65,7 +72,8 @@ trait GlobalUseTrait {
      *
      * @return array
      */
-    public function getUses() {
+    public function getUses()
+    {
         return $this->uses;
     }
 
@@ -74,7 +82,8 @@ trait GlobalUseTrait {
      *
      * @return array
      */
-    protected function renderUsesLines() {
+    protected function renderUsesLines()
+    {
         $code = array();
         $indentation = $this->getIndentation();
         foreach ($this->uses as $use => $alias) {

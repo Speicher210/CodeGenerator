@@ -2,12 +2,14 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\PHP\OOP;
 
-use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 use Wingu\OctopusCore\CodeGenerator\Tests\Unit\Expected\PHP\OOP\ModifiersFinalMock;
+use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 
-class ModifiersFinalTraitTest extends TestCase {
+class ModifiersFinalTraitTest extends TestCase
+{
 
-    public function testSetGetFinal() {
+    public function testSetGetFinal()
+    {
         $mock = new ModifiersFinalMock();
 
         $mock->setFinal(true);

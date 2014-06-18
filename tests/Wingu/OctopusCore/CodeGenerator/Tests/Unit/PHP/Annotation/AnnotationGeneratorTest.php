@@ -2,22 +2,30 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\PHP\Annotation;
 
-use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 use Wingu\OctopusCore\CodeGenerator\PHP\Annotation\AnnotationGenerator;
+use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 
-class AnnotationGeneratorTest extends TestCase {
+class AnnotationGeneratorTest extends TestCase
+{
 
-    protected function getDataGoodTags() {
+    protected function getDataGoodTags()
+    {
         $tags = array();
 
-        for($i=0; $i<5; $i++) {
-            $tags[] = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface', [], [], 'GoodTag'.$i);
+        for ($i = 0; $i < 5; $i++) {
+            $tags[] = $this->getMock(
+                'Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface',
+                [],
+                [],
+                'GoodTag' . $i
+            );
         }
 
         return $tags;
     }
 
-    public function testSetTags() {
+    public function testSetTags()
+    {
         $tags = $this->getDataGoodTags();
 
         $ag = new AnnotationGenerator();
@@ -26,10 +34,11 @@ class AnnotationGeneratorTest extends TestCase {
         $this->assertSame($tags, $ag->getTags());
     }
 
-    public function testAddTags() {
+    public function testAddTags()
+    {
         $tags = $this->getDataGoodTags();
 
-        $half = floor(count($tags)/2);
+        $half = floor(count($tags) / 2);
         $tags1 = array_slice($tags, 0, $half);
         $tags2 = array_slice($tags, $half);
 
@@ -40,37 +49,47 @@ class AnnotationGeneratorTest extends TestCase {
         $this->assertSame($tags, $ag->getTags());
     }
 
-    public function testAddTag() {
-    	$tags = $this->getDataGoodTags();
+    public function testAddTag()
+    {
+        $tags = $this->getDataGoodTags();
 
-    	$ag = new AnnotationGenerator();
-    	foreach ($tags as $tag) {
-    	    $ag->addTag($tag);
-    	}
+        $ag = new AnnotationGenerator();
+        foreach ($tags as $tag) {
+            $ag->addTag($tag);
+        }
 
-    	$this->assertSame($tags, $ag->getTags());
+        $this->assertSame($tags, $ag->getTags());
     }
 
-    public function getDataGenerate() {
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function getDataGenerate()
+    {
         $returnMap = array(
-    		'@param string $p1 Some param 1.',
-    		'@param string $p2 Some param 2.',
-    		'@param string $p3 Some param 3.',
-    		'@return boolean',
-    		'@throw Exception Some exception.'
+            '@param string $p1 Some param 1.',
+            '@param string $p2 Some param 2.',
+            '@param string $p3 Some param 3.',
+            '@return boolean',
+            '@throw Exception Some exception.'
         );
 
-        return array([
-            $returnMap,
-            file_get_contents(__DIR__.'/../../Expected/agNoIndent.txt'),
-            file_get_contents(__DIR__.'/../../Expected/agIndent.txt')
-        ]);
+        return array(
+            [
+                $returnMap,
+                file_get_contents(__DIR__ . '/../../Expected/agNoIndent.txt'),
+                file_get_contents(__DIR__ . '/../../Expected/agIndent.txt')
+            ]
+        );
     }
 
     /**
      * @dataProvider getDataGenerate
      */
-    public function testGenerate($returnMap, $expectedResultNoIndent) {
+    public function testGenerate($returnMap, $expectedResultNoIndent)
+    {
         $ag = new AnnotationGenerator();
 
         $mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
@@ -87,39 +106,42 @@ class AnnotationGeneratorTest extends TestCase {
     /**
      * @dataProvider getDataGenerate
      */
-    public function testGenerateToString($returnMap, $expectedResultNoIndent) {
-    	$ag = new AnnotationGenerator();
+    public function testGenerateToString($returnMap, $expectedResultNoIndent)
+    {
+        $ag = new AnnotationGenerator();
 
-    	$mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
-    	foreach ($returnMap as $at => $generated) {
-    		$mock->expects($this->at($at))
-        		->method('generate')
-        		->will($this->returnValue($generated));
-    		$ag->addTag($mock);
-    	}
+        $mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
+        foreach ($returnMap as $at => $generated) {
+            $mock->expects($this->at($at))
+                ->method('generate')
+                ->will($this->returnValue($generated));
+            $ag->addTag($mock);
+        }
 
-    	$this->assertSame($expectedResultNoIndent, (string)$ag);
+        $this->assertSame($expectedResultNoIndent, (string)$ag);
     }
 
     /**
      * @dataProvider getDataGenerate
      */
-    public function testGenerateIndentation1($returnMap, $expectedResultNoIndent, $expectedResultIndent) {
-    	$ag = new AnnotationGenerator();
-    	$ag->setIndentationLevel(1);
+    public function testGenerateIndentation1($returnMap, $expectedResultNoIndent, $expectedResultIndent)
+    {
+        $ag = new AnnotationGenerator();
+        $ag->setIndentationLevel(1);
 
-    	$mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
-    	foreach ($returnMap as $at => $generated) {
-    		$mock->expects($this->at($at))
-    		->method('generate')
-    		->will($this->returnValue($generated));
-    		$ag->addTag($mock);
-    	}
+        $mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
+        foreach ($returnMap as $at => $generated) {
+            $mock->expects($this->at($at))
+                ->method('generate')
+                ->will($this->returnValue($generated));
+            $ag->addTag($mock);
+        }
 
-    	$this->assertSame($expectedResultIndent, $ag->generate());
+        $this->assertSame($expectedResultIndent, $ag->generate());
     }
 
-    protected function getTagMockForRemoveTagsTest($tagName) {
+    protected function getTagMockForRemoveTagsTest($tagName)
+    {
         $mock = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface');
         $mock->expects($this->any())
             ->method('getTagName')
@@ -127,10 +149,11 @@ class AnnotationGeneratorTest extends TestCase {
         return $mock;
     }
 
-    public function testRemoveTagsByName() {
+    public function testRemoveTagsByName()
+    {
         $ag = new AnnotationGenerator();
 
-        $remainingTags = $removingTags =array();
+        $remainingTags = $removingTags = array();
         $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag1');
         $remainingTags[] = $this->getTagMockForRemoveTagsTest('tag1');
         $removingTags[] = $this->getTagMockForRemoveTagsTest('tag2');

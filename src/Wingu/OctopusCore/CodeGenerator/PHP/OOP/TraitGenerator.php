@@ -2,14 +2,15 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
-use Wingu\OctopusCore\Reflection\ReflectionClass;
-use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
+use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
+use Wingu\OctopusCore\Reflection\ReflectionClass;
 
 /**
  * Class to generate a trait.
  */
-class TraitGenerator extends AbstractObject {
+class TraitGenerator extends AbstractObject
+{
 
     use ModifiersBaseTrait;
     use ObjectUsesTrait;
@@ -22,7 +23,8 @@ class TraitGenerator extends AbstractObject {
      * @param string $name The name of the trait.
      * @param string $namespace The namespace for the trait.
      */
-    public function __construct($name, $namespace = null) {
+    public function __construct($name, $namespace = null)
+    {
         $this->setName($name);
         $this->setNamespace($namespace);
     }
@@ -31,10 +33,11 @@ class TraitGenerator extends AbstractObject {
      * Create a new trait from reflection.
      *
      * @param \Wingu\OctopusCore\Reflection\ReflectionClass $reflectionClass The reflection of the trait.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\TraitGenerator
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\TraitGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the reflected class is not a trait.
      */
-    public static function fromReflection(ReflectionClass $reflectionClass) {
+    public static function fromReflection(ReflectionClass $reflectionClass)
+    {
         if ($reflectionClass->isTrait() !== true) {
             throw new InvalidArgumentException('The reflected class must be a trait.');
         }
@@ -74,7 +77,8 @@ class TraitGenerator extends AbstractObject {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         if ($this->namespace !== null) {
@@ -95,8 +99,6 @@ class TraitGenerator extends AbstractObject {
         }
 
         $code[] = $indentation . 'trait ' . $this->name . ' {';
-
-        $traitElements = array();
 
         // Class uses.
         $traitElements = $this->generateTraitUsesLines();

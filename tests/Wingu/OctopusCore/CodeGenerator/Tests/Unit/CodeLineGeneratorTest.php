@@ -4,9 +4,16 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit;
 
 use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
 
-class CodeLineGeneratorTest extends TestCase {
+class CodeLineGeneratorTest extends TestCase
+{
 
-    public function getDataGenerate() {
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function getDataGenerate()
+    {
         return array(
             ['$line = 1;', null, null, '$line = 1;'],
             ['$line = 2;', null, '#', '$line = 2;'],
@@ -22,7 +29,8 @@ class CodeLineGeneratorTest extends TestCase {
     /**
      * @dataProvider getDataGenerate
      */
-    public function testGenerate($codeLine, $indentationLevel, $indentationString, $expected) {
+    public function testGenerate($codeLine, $indentationLevel, $indentationString, $expected)
+    {
         $clg = new CodeLineGenerator($codeLine, $indentationLevel, $indentationString);
         $this->assertSame($expected, $clg->generate());
     }

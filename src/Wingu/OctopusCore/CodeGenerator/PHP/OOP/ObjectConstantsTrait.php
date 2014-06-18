@@ -7,7 +7,8 @@ use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
 /**
  * Trait to deal with adding constants generators.
  */
-trait ObjectConstantsTrait {
+trait ObjectConstantsTrait
+{
 
     /**
      * Constants.
@@ -22,7 +23,8 @@ trait ObjectConstantsTrait {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator $constant The constant to add.
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the constant name already exists.
      */
-    public function addConstant(ClassConstantGenerator $constant) {
+    public function addConstant(ClassConstantGenerator $constant)
+    {
         $name = $constant->getName();
         if (isset($this->constants[$name]) === true) {
             throw new InvalidArgumentException('Constant name "' . $name . '" already added.');
@@ -36,7 +38,8 @@ trait ObjectConstantsTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator[] $constants The constants to add.
      */
-    public function addConstants(array $constants) {
+    public function addConstants(array $constants)
+    {
         foreach ($constants as $constant) {
             $this->addConstant($constant);
         }
@@ -47,7 +50,8 @@ trait ObjectConstantsTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator[] $constants The constants to set.
      */
-    public function setConstants(array $constants) {
+    public function setConstants(array $constants)
+    {
         $this->constants = array();
         $this->addConstants($constants);
     }
@@ -57,7 +61,8 @@ trait ObjectConstantsTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator[]
      */
-    public function getConstants() {
+    public function getConstants()
+    {
         return $this->constants;
     }
 
@@ -67,7 +72,8 @@ trait ObjectConstantsTrait {
      * @param string $name The name of the constant to check.
      * @return boolean
      */
-    public function hasConstant($name) {
+    public function hasConstant($name)
+    {
         return isset($this->constants[$name]);
     }
 
@@ -76,7 +82,8 @@ trait ObjectConstantsTrait {
      *
      * @return array
      */
-    protected function generateConstantsLines() {
+    protected function generateConstantsLines()
+    {
         $code = array();
         foreach ($this->constants as $constant) {
             $constant->setIndentationString($this->getIndentationString());

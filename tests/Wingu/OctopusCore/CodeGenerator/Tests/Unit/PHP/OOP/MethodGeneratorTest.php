@@ -2,13 +2,23 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\Tests\Unit\PHP\OOP;
 
-use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
-use Wingu\OctopusCore\CodeGenerator\PHP\OOP\Modifiers;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\MethodGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\OOP\Modifiers;
+use Wingu\OctopusCore\CodeGenerator\Tests\Unit\TestCase;
 
-class MethodGeneratorTest extends TestCase {
+/**
+ * Test for MethodGenerator.
+ */
+class MethodGeneratorTest extends TestCase
+{
 
-    public function getDataGenerateSignature() {
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function getDataGenerateSignature()
+    {
         return array(
             ['func1', false, false, Modifiers::VISIBILITY_PUBLIC, false, 'public function func1()'],
             ['func2', false, false, Modifiers::VISIBILITY_PRIVATE, true, 'private static function func2()'],
@@ -20,7 +30,8 @@ class MethodGeneratorTest extends TestCase {
     /**
      * @dataProvider getDataGenerateSignature
      */
-    public function testGenerateSignature($name, $final, $abstract, $visibility, $static, $expected) {
+    public function testGenerateSignature($name, $final, $abstract, $visibility, $static, $expected)
+    {
         $mg = new MethodGenerator($name);
         $mg->setFinal($final);
         $mg->setAbstract($abstract);
@@ -31,9 +42,10 @@ class MethodGeneratorTest extends TestCase {
     }
 
     /**
-     * @expectedException Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException
+     * @expectedException \Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException
      */
-    public function testAbstractAndFinalAtSameTime() {
+    public function testAbstractAndFinalAtSameTime()
+    {
         $mg = new MethodGenerator('test');
         $mg->setFinal(true);
         $mg->setAbstract(true);
@@ -41,12 +53,13 @@ class MethodGeneratorTest extends TestCase {
     }
 
     /**
-     * @expectedException Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException
+     * @expectedException \Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException
      */
-    public function testAbstractAndPrivateAtSameTime() {
-    	$mg = new MethodGenerator('test');
-    	$mg->setAbstract(true);
-    	$mg->setVisibility(Modifiers::VISIBILITY_PRIVATE);
-    	$mg->generateSignature();
+    public function testAbstractAndPrivateAtSameTime()
+    {
+        $mg = new MethodGenerator('test');
+        $mg->setAbstract(true);
+        $mg->setVisibility(Modifiers::VISIBILITY_PRIVATE);
+        $mg->generateSignature();
     }
 }

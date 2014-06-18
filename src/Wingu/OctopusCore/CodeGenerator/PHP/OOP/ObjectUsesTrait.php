@@ -5,7 +5,8 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 /**
  * Trait to deal with adding "use" statements of traits for objects.
  */
-trait ObjectUsesTrait {
+trait ObjectUsesTrait
+{
 
     /**
      * The trait uses.
@@ -19,7 +20,8 @@ trait ObjectUsesTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator $use The use.
      */
-    public function addTraitUse(UseTraitGenerator $use) {
+    public function addTraitUse(UseTraitGenerator $use)
+    {
         $this->traitUses[] = $use;
     }
 
@@ -28,7 +30,8 @@ trait ObjectUsesTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator[] $uses The uses.
      */
-    public function addTraitUses(array $uses) {
+    public function addTraitUses(array $uses)
+    {
         foreach ($uses as $use) {
             $this->addTraitUse($use);
         }
@@ -39,7 +42,8 @@ trait ObjectUsesTrait {
      *
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator[] $uses The uses to set.
      */
-    public function setTraitUses(array $uses) {
+    public function setTraitUses(array $uses)
+    {
         $this->traitUses = array();
         $this->addTraitUses($uses);
     }
@@ -49,7 +53,8 @@ trait ObjectUsesTrait {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\UseTraitGenerator[]
      */
-    public function getTraitUses() {
+    public function getTraitUses()
+    {
         return $this->traitUses;
     }
 
@@ -58,7 +63,8 @@ trait ObjectUsesTrait {
      *
      * @return array
      */
-    protected function generateTraitUsesLines() {
+    protected function generateTraitUsesLines()
+    {
         $code = array();
         foreach ($this->traitUses as $use) {
             $use->setIndentationString($this->getIndentationString());

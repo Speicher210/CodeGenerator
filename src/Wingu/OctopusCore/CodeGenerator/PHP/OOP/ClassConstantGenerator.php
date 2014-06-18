@@ -2,16 +2,17 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
-use Wingu\OctopusCore\CodeGenerator\PHP\AbstractEntityGenerator;
-use Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator;
-use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
-use Wingu\OctopusCore\Reflection\ReflectionConstant;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
+use Wingu\OctopusCore\CodeGenerator\PHP\AbstractEntityGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator;
+use Wingu\OctopusCore\Reflection\ReflectionConstant;
 
 /**
  * PHP class constant generator.
  */
-class ClassConstantGenerator extends AbstractEntityGenerator {
+class ClassConstantGenerator extends AbstractEntityGenerator
+{
 
     /**
      * The value of the constant.
@@ -27,7 +28,8 @@ class ClassConstantGenerator extends AbstractEntityGenerator {
      * @param mixed $value The value of the constant.
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator $documentation The documentation to set.
      */
-    public function __construct($name, $value, DocCommentGenerator $documentation = null) {
+    public function __construct($name, $value, DocCommentGenerator $documentation = null)
+    {
         $this->setName($name);
         $this->setValue($value);
         if ($documentation !== null) {
@@ -41,7 +43,8 @@ class ClassConstantGenerator extends AbstractEntityGenerator {
      * @param \Wingu\OctopusCore\Reflection\ReflectionConstant $reflectionConstant The reflection of a class constant.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator
      */
-    public static function fromReflection(ReflectionConstant $reflectionConstant) {
+    public static function fromReflection(ReflectionConstant $reflectionConstant)
+    {
         $cc = new static($reflectionConstant->getName(), $reflectionConstant->getValue());
 
         if ($reflectionConstant->getReflectionDocComment()->isEmpty() !== true) {
@@ -55,16 +58,19 @@ class ClassConstantGenerator extends AbstractEntityGenerator {
      * Set the value for the constant.
      *
      * @param mixed $value The value for the constant.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\ClassConstantGenerator
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\ClassConstantGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the value is not valid.
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         if (($value instanceof ValueGenerator) !== true) {
             $value = new ValueGenerator($value);
         }
 
         if ($value->isValidConstantType() !== true) {
-            throw new InvalidArgumentException('Constant value is not valid (' . gettype($value->getValue()) . ' type given).');
+            throw new InvalidArgumentException('Constant value is not valid (' . gettype(
+                $value->getValue()
+            ) . ' type given).');
         }
 
         $this->value = $value;
@@ -77,7 +83,8 @@ class ClassConstantGenerator extends AbstractEntityGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         $doc = $this->generateDocumentation();

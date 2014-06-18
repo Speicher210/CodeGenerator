@@ -2,18 +2,19 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP\OOP;
 
-use Wingu\OctopusCore\CodeGenerator\PHP\AbstractEntityGenerator;
-use Wingu\OctopusCore\CodeGenerator\PHP\ParameterTrait;
-use Wingu\OctopusCore\CodeGenerator\PHP\BodyTrait;
-use Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator;
-use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
-use Wingu\OctopusCore\Reflection\ReflectionMethod;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException;
+use Wingu\OctopusCore\CodeGenerator\PHP\AbstractEntityGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\BodyTrait;
+use Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator;
+use Wingu\OctopusCore\CodeGenerator\PHP\ParameterTrait;
+use Wingu\OctopusCore\Reflection\ReflectionMethod;
 
 /**
  * Class to generate object methods.
  */
-class MethodGenerator extends AbstractEntityGenerator {
+class MethodGenerator extends AbstractEntityGenerator
+{
 
     use ModifiersBaseTrait;
     use ModifiersAbstractTrait;
@@ -30,7 +31,8 @@ class MethodGenerator extends AbstractEntityGenerator {
      * @param string $body The body of the function.
      * @param array $parameters The functions parameters.
      */
-    public function __construct($name, $body = null, array $parameters = array()) {
+    public function __construct($name, $body = null, array $parameters = array())
+    {
         $this->setName($name);
 
         if ($body !== null) {
@@ -44,9 +46,10 @@ class MethodGenerator extends AbstractEntityGenerator {
      * Create a new method from reflection.
      *
      * @param \Wingu\OctopusCore\Reflection\ReflectionMethod $reflectionMethod The reflection of the method.
-     * @return \Wingu\OctopusCore\CodeGenerator\PHP\MethodGenerator
+     * @return \Wingu\OctopusCore\CodeGenerator\PHP\OOP\MethodGenerator
      */
-    public static function fromReflection(ReflectionMethod $reflectionMethod) {
+    public static function fromReflection(ReflectionMethod $reflectionMethod)
+    {
         $method = new static($reflectionMethod->getName());
         foreach ($reflectionMethod->getParameters() as $parameter) {
             $method->addParameter(ParameterGenerator::fromReflection($parameter));
@@ -68,7 +71,9 @@ class MethodGenerator extends AbstractEntityGenerator {
         }
 
         if ($reflectionMethod->getReflectionDocComment()->isEmpty() !== true) {
-            $method->setDocumentation(DocCommentGenerator::fromReflection($reflectionMethod->getReflectionDocComment()));
+            $method->setDocumentation(
+                DocCommentGenerator::fromReflection($reflectionMethod->getReflectionDocComment())
+            );
         }
 
         if ($reflectionMethod->isAbstract() !== true) {
@@ -87,7 +92,8 @@ class MethodGenerator extends AbstractEntityGenerator {
      * @return string
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException If the method is abstract and final or abstract and private.
      */
-    public function generateSignature() {
+    public function generateSignature()
+    {
         if ($this->isFinal() === true && $this->isAbstract() === true) {
             throw new RuntimeException('A method can not be "abstract" and "final".');
         }
@@ -117,7 +123,8 @@ class MethodGenerator extends AbstractEntityGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = array();
 
         $doc = $this->generateDocumentation();

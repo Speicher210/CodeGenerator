@@ -8,7 +8,8 @@ use Wingu\OctopusCore\Reflection\Annotation\Tags\TagInterface as ReflectionTagIn
 /**
  * Interface for annotations.
  */
-interface TagInterface extends GeneratorInterface {
+interface TagInterface extends GeneratorInterface
+{
 
     /**
      * Create a new tag from reflection.

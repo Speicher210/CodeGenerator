@@ -2,13 +2,14 @@
 
 namespace Wingu\OctopusCore\CodeGenerator\PHP;
 
-use Wingu\OctopusCore\Reflection\ReflectionParameter;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException;
+use Wingu\OctopusCore\Reflection\ReflectionParameter;
 
 /**
  * PHP function / method parameter generator.
  */
-class ParameterGenerator extends AbstractEntityGenerator {
+class ParameterGenerator extends AbstractEntityGenerator
+{
 
     /**
      * The parameter default value.
@@ -46,7 +47,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @param mixed $type The type of the parameter.
      * @param boolean $passByReference Flag if the parameter is passed by reference.
      */
-    public function __construct($name, $defaultValue = null, $type = null, $passByReference = false) {
+    public function __construct($name, $defaultValue = null, $type = null, $passByReference = false)
+    {
         $this->setName($name);
 
         if ($defaultValue !== null) {
@@ -68,7 +70,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @param \Wingu\OctopusCore\Reflection\ReflectionParameter $reflectionParameter The reflection of a parameter.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      */
-    public static function fromReflection(ReflectionParameter $reflectionParameter) {
+    public static function fromReflection(ReflectionParameter $reflectionParameter)
+    {
         $param = new static($reflectionParameter->getName());
 
         if ($reflectionParameter->isArray() === true) {
@@ -114,7 +117,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @param string $name The name to check.
      * @return boolean
      */
-    protected function isNameValid($name) {
+    protected function isNameValid($name)
+    {
         if (is_string($name) === false) {
             return false;
         }
@@ -133,7 +137,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @param \Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator $value The value to check.
      * @return boolean
      */
-    protected function isValidParameterDefaultValue(ValueGenerator $value) {
+    protected function isValidParameterDefaultValue(ValueGenerator $value)
+    {
         return is_array($value->getValue()) || $value->isValidConstantType();
     }
 
@@ -144,7 +149,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the value is not valid.
      */
-    public function setDefaultValue($value) {
+    public function setDefaultValue($value)
+    {
         if (($value instanceof ValueGenerator) === false) {
             $value = new ValueGenerator($value);
         }
@@ -163,7 +169,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ValueGenerator
      */
-    public function getDefaultValue() {
+    public function getDefaultValue()
+    {
         return $this->defaultValue;
     }
 
@@ -172,7 +179,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return boolean
      */
-    public function isDefaultValueConstant() {
+    public function isDefaultValueConstant()
+    {
         return $this->defaultValueConstantName !== null;
     }
 
@@ -183,7 +191,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the name is not valid.
      */
-    public function setDefaultValueConstantName($name) {
+    public function setDefaultValueConstantName($name)
+    {
         if (is_string($name) !== true || strlen($name) === 0 || preg_match('/\s/', $name) > 0) {
             throw new InvalidArgumentException('Constant name is not valid.');
         }
@@ -197,7 +206,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return string
      */
-    public function getDefaultValueConstantName() {
+    public function getDefaultValueConstantName()
+    {
         return $this->defaultValueConstantName;
     }
 
@@ -208,7 +218,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      * @throws \Wingu\OctopusCore\CodeGenerator\Exceptions\InvalidArgumentException If the type is not valid.
      */
-    public function setType($type) {
+    public function setType($type)
+    {
         if ($type === null || $type === 'array') {
             $this->type = $type;
             return $this;
@@ -227,7 +238,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      */
-    protected function detectParameterType() {
+    protected function detectParameterType()
+    {
         $this->setType(null);
 
         if ($this->defaultValue !== null) {
@@ -245,7 +257,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return string
      */
-    public function getType() {
+    public function getType()
+    {
         return $this->type;
     }
 
@@ -255,8 +268,9 @@ class ParameterGenerator extends AbstractEntityGenerator {
      * @param boolean $passByReference Flag if the parameter is passed by reference.
      * @return \Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator
      */
-    public function setPassByReference($passByReference) {
-        $this->passByReference = (boolean) $passByReference;
+    public function setPassByReference($passByReference)
+    {
+        $this->passByReference = (boolean)$passByReference;
         return $this;
     }
 
@@ -265,7 +279,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return boolean
      */
-    public function isPassByReference() {
+    public function isPassByReference()
+    {
         return $this->passByReference;
     }
 
@@ -274,7 +289,8 @@ class ParameterGenerator extends AbstractEntityGenerator {
      *
      * @return string
      */
-    public function generate() {
+    public function generate()
+    {
         $code = '';
 
         if ($this->type !== null) {
