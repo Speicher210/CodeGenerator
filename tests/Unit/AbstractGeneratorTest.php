@@ -40,7 +40,6 @@ class AbstractGeneratorTest extends TestCase
             [1.1, 1],
             [2.5, 2],
             [2.7, 2],
-            [INF, 0],
             ['0', 0],
             ['1', 1],
             ['1.1', 1],
@@ -64,7 +63,7 @@ class AbstractGeneratorTest extends TestCase
 
     public function getDataIndentationLevelFail()
     {
-        return array([-5], ['-5']);
+        return array([-5], ['-5'], [INF], [-INF]);
     }
 
     /**

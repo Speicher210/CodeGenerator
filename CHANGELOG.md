@@ -2,6 +2,9 @@
 
 ## 1.0.6 - 2015-03-30
 
+### Fixed
+- Fixed issue when indentation level was infinite
+
 ### Added
 - Project structure refactoring
 - Use PSR-2 & PSR-4

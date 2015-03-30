@@ -60,11 +60,11 @@ abstract class AbstractGenerator implements GeneratorInterface
      */
     public function setIndentationLevel($value)
     {
-        if ($value < 0) {
-            throw new Exceptions\InvalidArgumentException('The indentation level can not be negative.');
+        if ($value < 0 || (!is_string($value) && is_infinite($value))) {
+            throw new Exceptions\InvalidArgumentException('The indentation level can not be negative or infinite.');
         }
 
-        $this->indentationLevel = (int)$value;
+        $this->indentationLevel = intval($value);
         return $this;
     }
 
