@@ -5,6 +5,9 @@ namespace Wingu\OctopusCore\CodeGenerator\PHP;
 use Wingu\OctopusCore\CodeGenerator\Exceptions\RuntimeException;
 use Wingu\OctopusCore\CodeGenerator\Expression;
 
+/**
+ * Dump a value as valid PHP code.
+ */
 class ValueGenerator extends PHPGenerator
 {
 
@@ -204,6 +207,7 @@ class ValueGenerator extends PHPGenerator
      *
      * @param string $value The string to escape.
      * @param boolean $quote If the string should be quoted or not.
+     * @return string
      */
     public function escapeStringValue($value, $quote = true)
     {

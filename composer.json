@@ -1,38 +1,37 @@
 {
     "name":"wingu/code-generator",
-    "description":"Wingu OctopusCore CoreGenerator",
-    "version":"1.0.5",
-    "type":"library",
-    "keywords":[
-        "php code generator",
-        "code generator",
-        "generator",
-        "generation"
+    "description": "Wingu OctopusCore CoreGenerator",
+    "keywords": [
+      "php code generator",
+      "code generator",
+      "generator",
+      "generation"
     ],
-    "license":"MIT",
-    "authors":[
+    "homepage": "https://github.com/thephpleague/:package_name",
+    "license": "MIT",
+    "authors": [
         {
-            "name":"Dragos Protung",
-            "email":"dragos.protung@speicher210.com",
-            "role":"Developer"
-        },
-        {
-            "name":"Antoine Verger",
-            "email":"antoine.verger@speicher210.com",
-            "role":"Developer"
+          "name":"Dragos Protung",
+          "email": "dragos@protung.ro",
+          "role":"Developer"
         }
     ],
-    "require":{
-        "php":">=5.4",
-        "wingu/reflection":"1.*"
+    "require": {
+        "php" : ">=5.4",
+        "wingu/reflection":"~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.1.*"
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
     },
-    "autoload":{
-        "psr-0":{
-            "Wingu\\OctopusCore\\CodeGenerator\\":"src/",
-    		"Wingu\\OctopusCore\\CodeGenerator\\Tests":"tests/"
-    	}
+    "autoload": {
+        "psr-4": {
+            "Wingu\\OctopusCore\\CodeGenerator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wingu\\OctopusCore\\CodeGenerator\\Tests\\": "tests"
+        }
     }
 }

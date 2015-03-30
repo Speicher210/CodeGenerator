@@ -12,7 +12,7 @@ use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
 use Wingu\OctopusCore\Reflection\ReflectionFunction;
 use Wingu\OctopusCore\CodeGenerator\Expression;
 
-require_once(dirname(__DIR__).'/Fixtures/functions.php');
+require_once(dirname(__DIR__) . '/Fixtures/functions.php');
 
 class FunctionGeneratorTest extends TestCase {
 
