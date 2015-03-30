@@ -105,6 +105,7 @@ class ValueGenerator extends PHPGenerator
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -127,6 +128,7 @@ class ValueGenerator extends PHPGenerator
     public function setOutputMode($outputMode)
     {
         $this->outputMode = ($outputMode === self::OUTPUT_MULTI_LINE) ? self::OUTPUT_MULTI_LINE : self::OUTPUT_SINGLE_LINE;
+
         return $this;
     }
 
@@ -272,7 +274,10 @@ class ValueGenerator extends PHPGenerator
      */
     protected function prepareArrayValue(array $value)
     {
-        $rii = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($value), \RecursiveIteratorIterator::SELF_FIRST);
+        $rii = new \RecursiveIteratorIterator(
+            new \RecursiveArrayIterator($value),
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
         foreach ($rii as $key => $value) {
             if (($value instanceof ValueGenerator) === false) {
                 $value = new self($value);
@@ -298,8 +303,7 @@ class ValueGenerator extends PHPGenerator
 
         $code = 'array(';
         if ($outputMode === self::OUTPUT_MULTI_LINE) {
-            $code .= $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString(
-                ) . $this->getIndentationString();
+            $code .= $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString() . $this->getIndentationString();
         }
 
         $outputParts = array();
@@ -317,8 +321,7 @@ class ValueGenerator extends PHPGenerator
         }
 
         if ($outputMode === self::OUTPUT_MULTI_LINE) {
-            $padding = $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString(
-                ) . $this->getIndentationString();
+            $padding = $this->getLineFeed() . $this->getIndentation() . $this->getIndentationString() . $this->getIndentationString();
         } else {
             $padding = ' ';
         }

@@ -45,6 +45,7 @@ trait DocCommentTrait
         if ($this->documentation !== null) {
             $this->documentation->setIndentationString($this->getIndentationString());
             $this->documentation->setIndentationLevel($this->getIndentationLevel());
+
             return $this->documentation->generate();
         } else {
             return null;

@@ -26,6 +26,7 @@ trait FileGeneratorTrait
     public function setFilename($filename)
     {
         $this->filename = $filename;
+
         return $this;
     }
 
@@ -61,6 +62,7 @@ trait FileGeneratorTrait
         }
 
         file_put_contents($file, $this->generate());
+
         return $this;
     }
 }

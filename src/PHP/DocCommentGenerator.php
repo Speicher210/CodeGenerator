@@ -62,8 +62,7 @@ class DocCommentGenerator extends PHPGenerator
             $annotations[] = BaseTag::fromReflection($reflectionTag);
         }
 
-        return new static($reflectionDocComment->getShortDescription(), $reflectionDocComment->getLongDescription(
-        ), $annotations);
+        return new static($reflectionDocComment->getShortDescription(), $reflectionDocComment->getLongDescription(), $annotations);
     }
 
     /**
@@ -75,6 +74,7 @@ class DocCommentGenerator extends PHPGenerator
     public function addAnnotationTag(TagInterface $tag)
     {
         $this->annotationGenerator->addTag($tag);
+
         return $this;
     }
 

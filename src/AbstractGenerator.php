@@ -38,6 +38,7 @@ abstract class AbstractGenerator implements GeneratorInterface
     public function setIndentationString($value)
     {
         $this->indentationString = $value;
+
         return $this;
     }
 
@@ -65,6 +66,7 @@ abstract class AbstractGenerator implements GeneratorInterface
         }
 
         $this->indentationLevel = intval($value);
+
         return $this;
     }
 
@@ -77,6 +79,7 @@ abstract class AbstractGenerator implements GeneratorInterface
     public function addIndentationLevel($value)
     {
         $this->indentationLevel = max(0, $this->indentationLevel + (int)$value);
+
         return $this;
     }
 
@@ -109,6 +112,7 @@ abstract class AbstractGenerator implements GeneratorInterface
     public function setLineFeed($lineFeed)
     {
         $this->lineFeed = $lineFeed;
+
         return $this;
     }
 

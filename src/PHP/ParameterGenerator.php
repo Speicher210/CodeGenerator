@@ -198,6 +198,7 @@ class ParameterGenerator extends AbstractEntityGenerator
         }
 
         $this->defaultValueConstantName = $name;
+
         return $this;
     }
 
@@ -222,6 +223,7 @@ class ParameterGenerator extends AbstractEntityGenerator
     {
         if ($type === null || $type === 'array') {
             $this->type = $type;
+
             return $this;
         }
 
@@ -230,6 +232,7 @@ class ParameterGenerator extends AbstractEntityGenerator
         }
 
         $this->type = $type;
+
         return $this;
     }
 
@@ -271,6 +274,7 @@ class ParameterGenerator extends AbstractEntityGenerator
     public function setPassByReference($passByReference)
     {
         $this->passByReference = (boolean)$passByReference;
+
         return $this;
     }
 

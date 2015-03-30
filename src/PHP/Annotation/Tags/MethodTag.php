@@ -54,6 +54,7 @@ class MethodTag extends BaseTag
     public function setMethodName($methodName)
     {
         $this->methodName = $methodName;
+
         return $this;
     }
 
@@ -80,6 +81,7 @@ class MethodTag extends BaseTag
         }
 
         $this->methodReturn = $return;
+
         return $this;
     }
 
@@ -102,6 +104,7 @@ class MethodTag extends BaseTag
     public function setMethodDescription($description)
     {
         $this->methodDescription = $description;
+
         return $this;
     }
 

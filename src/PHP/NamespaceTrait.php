@@ -27,6 +27,7 @@ trait NamespaceTrait
     {
         if ($namespace === null || $namespace === '' || $namespace === '\\') {
             $this->namespace = null;
+
             return;
         }
 

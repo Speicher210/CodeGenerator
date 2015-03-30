@@ -86,6 +86,7 @@ class UseTraitGenerator extends PHPGenerator
     public function setConflictsResolutions(array $conflictsResolutions)
     {
         $this->conflictsResolutions = $conflictsResolutions;
+
         return $this;
     }
 

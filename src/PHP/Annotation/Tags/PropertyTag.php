@@ -113,8 +113,7 @@ class PropertyTag extends BaseTag
     public function generate()
     {
         return trim(
-            '@' . $this->getAccess() . ' ' . $this->getType() . ' $' . $this->getPropertyName(
-            ) . ' ' . $this->description
+            '@' . $this->getAccess() . ' ' . $this->getType() . ' $' . $this->getPropertyName() . ' ' . $this->description
         );
     }
 }

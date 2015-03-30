@@ -56,6 +56,7 @@ class FileGenerator extends PHPGenerator
     public function setRequiredFiles(array $requiredFiles)
     {
         $this->requiredFiles = $requiredFiles;
+
         return $this;
     }
 
@@ -68,6 +69,7 @@ class FileGenerator extends PHPGenerator
     public function addRequiredFiles(array $requiredFiles = array())
     {
         $this->requiredFiles = array_merge($this->requiredFiles, $requiredFiles);
+
         return $this;
     }
 
@@ -80,6 +82,7 @@ class FileGenerator extends PHPGenerator
     public function addRequiredFile($requiredFile)
     {
         $this->requiredFiles[] = $requiredFile;
+
         return $this;
     }
 
@@ -102,6 +105,7 @@ class FileGenerator extends PHPGenerator
     public function setObjects(array $objects)
     {
         $this->objects = array();
+
         return $this->addObjects($objects);
     }
 
@@ -129,6 +133,7 @@ class FileGenerator extends PHPGenerator
     public function addObject(AbstractObject $object)
     {
         $this->objects[] = $object;
+
         return $this;
     }
 
@@ -151,6 +156,7 @@ class FileGenerator extends PHPGenerator
     public function setExtraBody($body)
     {
         $this->extraBody = $body;
+
         return $this;
     }
 

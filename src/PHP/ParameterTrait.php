@@ -28,6 +28,7 @@ trait ParameterTrait
     {
         $this->parameters = array();
         $this->addParameters($parameters);
+
         return $this;
     }
 
@@ -62,6 +63,7 @@ trait ParameterTrait
         }
 
         $this->parameters[$name] = $parameter;
+
         return $this;
     }
 

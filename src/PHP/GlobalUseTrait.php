@@ -28,6 +28,7 @@ trait GlobalUseTrait
     public function setUses($uses)
     {
         $this->uses = array();
+
         return $this->addUses($uses);
     }
 
@@ -64,6 +65,7 @@ trait GlobalUseTrait
     public function addUse($use, $alias = null)
     {
         $this->uses[$use] = $alias;
+
         return $this;
     }
 

@@ -40,6 +40,7 @@ class FileGenerator extends AbstractGenerator
     public function setBody($body)
     {
         $this->code = array(new CodeLineGenerator($body, $this->getIndentationLevel(), $this->getIndentationString()));
+
         return $this;
     }
 
@@ -52,6 +53,7 @@ class FileGenerator extends AbstractGenerator
     public function addBodyLine(CodeLineGenerator $line)
     {
         $this->code[] = $line;
+
         return $this;
     }
 

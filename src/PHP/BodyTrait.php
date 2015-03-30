@@ -26,6 +26,7 @@ trait BodyTrait
     public function setBody($body)
     {
         $this->body = array(new CodeLineGenerator($body));
+
         return $this;
     }
 
@@ -38,6 +39,7 @@ trait BodyTrait
     public function addBodyLine(CodeLineGenerator $line)
     {
         $this->body[] = $line;
+
         return $this;
     }
 
@@ -49,6 +51,7 @@ trait BodyTrait
     public function addEmptyBodyLine()
     {
         $this->body[] = new CodeLineGenerator();
+
         return $this;
     }
 
@@ -71,6 +74,7 @@ trait BodyTrait
             }
 
             $code[] = $this->getIndentation() . '}';
+
             return implode($this->getLineFeed(), $code);
         }
     }

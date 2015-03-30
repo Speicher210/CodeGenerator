@@ -189,6 +189,7 @@ class ClassGenerator extends AbstractObject
     {
         $this->implements = array();
         $this->addImplements($interfacesNames);
+
         return $this;
     }
 

@@ -68,9 +68,7 @@ class ClassConstantGenerator extends AbstractEntityGenerator
         }
 
         if ($value->isValidConstantType() !== true) {
-            throw new InvalidArgumentException('Constant value is not valid (' . gettype(
-                $value->getValue()
-            ) . ' type given).');
+            throw new InvalidArgumentException('Constant value is not valid (' . gettype($value->getValue()) . ' type given).');
         }
 
         $this->value = $value;
