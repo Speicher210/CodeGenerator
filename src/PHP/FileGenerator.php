@@ -201,7 +201,8 @@ class FileGenerator extends PHPGenerator
         if ($this->areMultipleNamespacesInFile() === true) {
             $code = array_merge($code, $this->renderObjects(true));
 
-            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace . ' {';
+            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace;
+            $code[] = '{';
             $code[] = null;
 
             // Temporarily add one more level of indentation.

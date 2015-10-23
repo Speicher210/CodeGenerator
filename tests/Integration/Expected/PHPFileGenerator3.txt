@@ -9,25 +9,32 @@
  * @author Wingu
  */
 
-namespace myObjects\classes {
+namespace myObjects\classes
+{
 
-    class class3_1 {
+    class class3_1
+    {
     }
 }
 
-namespace myObjects\classes {
+namespace myObjects\classes
+{
 
-    class class3_2 {
+    class class3_2
+    {
     }
 }
 
-namespace myObjects\interfaces {
+namespace myObjects\interfaces
+{
 
-    interface interface3_1 {
+    interface interface3_1
+    {
     }
 }
 
-namespace myNS\subNS3 {
+namespace myNS\subNS3
+{
 
     require_once ('r1');
     require_once ('r2');

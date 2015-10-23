@@ -82,7 +82,8 @@ class TraitGenerator extends AbstractObject
         $code = array();
 
         if ($this->namespace !== null) {
-            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace . ' {';
+            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace;
+            $code[] = '{';
             $code[] = null;
 
             // Temporarily add one more level of indentation.
@@ -98,7 +99,8 @@ class TraitGenerator extends AbstractObject
             $code[] = $doc;
         }
 
-        $code[] = $indentation . 'trait ' . $this->name . ' {';
+        $code[] = $indentation . 'trait ' . $this->name;
+        $code[] = $indentation . '{';
 
         // Class uses.
         $traitElements = $this->generateTraitUsesLines();

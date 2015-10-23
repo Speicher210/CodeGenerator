@@ -213,7 +213,8 @@ class ClassGenerator extends AbstractObject
         $code = array();
 
         if ($this->namespace !== null) {
-            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace . ' {';
+            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace;
+            $code[] = '{';
             $code[] = null;
 
             // Temporarily add one more level of indentation.
@@ -246,7 +247,8 @@ class ClassGenerator extends AbstractObject
             $line .= ' implements ' . implode(', ', $this->implements);
         }
 
-        $code[] = $line . ' {';
+        $code[] = $line;
+        $code[] = $indentation . '{';
 
         // Class uses.
         $classElements = $this->generateTraitUsesLines();

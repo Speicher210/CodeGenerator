@@ -1,4 +1,5 @@
-namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
+namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures
+{
 
     /**
      * Short interface description.
@@ -8,7 +9,8 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
      *
      * @baseAnnotation testing
      */
-    interface MyInterface extends i1, i2, \Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures\Dummy\i3, \Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures\Dummy\i4 {
+    interface MyInterface extends i1, i2, \Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures\Dummy\i3, \Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures\Dummy\i4
+    {
 
         const MY_CONST1 = null;
 

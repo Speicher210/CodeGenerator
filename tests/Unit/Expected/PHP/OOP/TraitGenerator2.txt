@@ -1,5 +1,7 @@
-namespace myNamespace {
+namespace myNamespace
+{
 
-    trait t2 {
+    trait t2
+    {
     }
 }

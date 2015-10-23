@@ -10,6 +10,7 @@
  * @param integer $const Sorting direction.
  * @return float
  */
-final private static function myTestMethod(array $array, $times = 1, \DateTime $datetime = null, $const = SORT_ASC, $c2 = OtherClass::SOME_CONSTANT, $c3 = Sub\FixtureClassConstant::SOME_CONSTANT, $c4 = \Wingu\OctopusCore\CodeGenerator\Tests\FixtureClassConstant_123::SOME_CONSTANT) {
+final private static function myTestMethod(array $array, $times = 1, \DateTime $datetime = null, $const = SORT_ASC, $c2 = OtherClass::SOME_CONSTANT, $c3 = Sub\FixtureClassConstant::SOME_CONSTANT, $c4 = \Wingu\OctopusCore\CodeGenerator\Tests\FixtureClassConstant_123::SOME_CONSTANT)
+{
     return array_sum($array) * $times;
 }

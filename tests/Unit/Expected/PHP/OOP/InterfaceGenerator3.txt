@@ -1,9 +1,11 @@
-namespace myNamespace {
+namespace myNamespace
+{
 
     /**
      * My description
      */
-    interface i3 extends \othernamespace\ie1, ie2 {
+    interface i3 extends \othernamespace\ie1, ie2
+    {
 
         /**
          * My const.

@@ -135,7 +135,8 @@ class MethodGenerator extends AbstractEntityGenerator
         if ($this->isAbstract() === true) {
             $code[] = $this->generateSignature() . ';';
         } else {
-            $code[] = $this->generateSignature() . ' ' . $this->generateBody();
+            $code[] = $this->generateSignature();
+            $code[] = $this->getIndentation() . $this->generateBody();
         }
 
         return implode($this->getLineFeed(), $code);

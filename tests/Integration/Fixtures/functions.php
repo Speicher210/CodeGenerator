@@ -14,9 +14,11 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures;
  * @param integer $constant Test some constant.
  * @return float
  */
-function myTestFunction(array $array, $times = 1, \DateTime $datetime = null, $constant = SORT_ASC) {
+function myTestFunction(array $array, $times = 1, \DateTime $datetime = null, $constant = SORT_ASC)
+{
     return array_sum($array) * $times;
 }
 
-function testFunctionNoDocComment() {
+function testFunctionNoDocComment()
+{
 }
