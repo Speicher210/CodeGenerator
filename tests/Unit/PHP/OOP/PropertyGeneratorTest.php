@@ -135,9 +135,10 @@ class PropertyGeneratorTest extends TestCase
      */
     public function getDataGenerate()
     {
-        $doc = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
-        $doc->expects($this->at(0))->method('generate')->will($this->returnValue("/**\n *\n */"));
-        $doc->expects($this->at(1))->method('generate')->will(
+        $doc3 = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
+        $doc3->expects($this->at(0))->method('generate')->will($this->returnValue("/**\n *\n */"));
+        $doc4 = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
+        $doc4->expects($this->at(0))->method('generate')->will(
             $this->returnValue("/**\n * Short desc.\n * \n * Long description.\n * \n * @var string Some param6.\n */")
         );
 
@@ -158,14 +159,14 @@ class PropertyGeneratorTest extends TestCase
                 'prop5',
                 'my string',
                 Modifiers::MODIFIER_PROTECTED | Modifiers::MODIFIER_STATIC,
-                $doc
+                $doc3
             ],
             [
                 "/**\n * Short desc.\n * \n * Long description.\n * \n * @var string Some param6.\n */\nprivate \$param6 = 'my string';",
                 'param6',
                 'my string',
                 Modifiers::MODIFIER_PRIVATE,
-                $doc
+                $doc4
             ]
         );
     }

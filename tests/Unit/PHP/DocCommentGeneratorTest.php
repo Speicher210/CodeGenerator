@@ -29,7 +29,7 @@ class DocCommentGeneratorTest extends TestCase
     /**
      * Data provider.
      *
-     * @param $calledBy
+     * @param string $calledBy Name of test called.
      * @return array
      */
     public function getDataDocCommentsGeneration($calledBy)
@@ -42,7 +42,7 @@ class DocCommentGeneratorTest extends TestCase
             '@throw Exception Some exception.'
         );
 
-        $tags = array();
+        $tags6 = $tags7 = array();
         for ($i = 0; $i < 5; $i++) {
             $mock = $this->getMock(
                 'Wingu\OctopusCore\CodeGenerator\PHP\Annotation\Tags\TagInterface',
@@ -54,7 +54,8 @@ class DocCommentGeneratorTest extends TestCase
                 ->method('generate')
                 ->will($this->returnValue($returnMap[$i]));
 
-            $tags[] = $mock;
+            $tags6[] = $mock;
+            $tags7[] = clone $mock;
         }
 
         return array(
@@ -64,11 +65,11 @@ class DocCommentGeneratorTest extends TestCase
             ['short desc ', 'long desc', [], "/**\n * short desc\n *\n * long desc\n */"],
             ['short desc ', 'long desc ', [], "/**\n * short desc\n *\n * long desc\n */"],
             ['short desc ', "long desc \nlong desc ", [], "/**\n * short desc\n *\n * long desc\n * long desc\n */"],
-            [null, null, $tags, "/**\n * " . implode("\n * ", $returnMap) . "\n */"],
+            [null, null, $tags6, "/**\n * " . implode("\n * ", $returnMap) . "\n */"],
             [
                 'short',
                 'long description',
-                $tags,
+                $tags7,
                 "/**\n * short\n *\n * long description\n *\n * " . implode("\n * ", $returnMap) . "\n */"
             ],
         );

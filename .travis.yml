@@ -7,9 +7,13 @@ php:
   - 7.0
   - hhvm
 
+# This triggers builds to run on the new TravisCI infrastructure.
+# See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
+sudo: false
+
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 matrix:
   allow_failures:
@@ -17,7 +21,7 @@ matrix:
   fast_finish: true
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
   - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover

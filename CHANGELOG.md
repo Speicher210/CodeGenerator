@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 - 2015-xx-XX
+
+### Added
+- Generated code is now PSR-2 (@FabioBatSilva)
+
 ## 1.0.6 - 2015-03-30
 
 ### Fixed

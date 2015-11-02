@@ -20,7 +20,7 @@ class ClassConstantGeneratorTest extends TestCase
             ['myname'],
             ['name123'],
             ['_name_'],
-            ['n1n']
+            ['n1n'],
         );
     }
 
@@ -92,7 +92,7 @@ class ClassConstantGeneratorTest extends TestCase
             [3.14],
             [SORT_ASC],
             ['my value'],
-            [new ValueGenerator('value generator')]
+            [new ValueGenerator('value generator')],
         );
     }
 
@@ -122,7 +122,7 @@ class ClassConstantGeneratorTest extends TestCase
             [array(1, 2, '3')],
             [new \stdClass()],
             [new ValueGenerator(array())],
-            [fopen(__FILE__, 'r')]
+            [fopen(__FILE__, 'r')],
         );
     }
 
@@ -149,11 +149,12 @@ class ClassConstantGeneratorTest extends TestCase
      */
     public function getDataGenerate()
     {
-        $doc = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
-        $doc->expects($this->at(0))
+        $doc4 = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
+        $doc4->expects($this->at(0))
             ->method('generate')
             ->will($this->returnValue("/**\n *\n */"));
-        $doc->expects($this->at(1))
+        $doc5 = $this->getMock('Wingu\OctopusCore\CodeGenerator\PHP\DocCommentGenerator', ['generate', '__toString']);
+        $doc5->expects($this->at(0))
             ->method('generate')
             ->will(
                 $this->returnValue(
@@ -166,12 +167,12 @@ class ClassConstantGeneratorTest extends TestCase
             ["            const const2 = 'string';", 'const2', 'string', null, 3],
             ["const const3 = 'it\\'s great';", 'const3', "it's great"],
             ["const const4 = null;", 'const4', null],
-            ["/**\n *\n */\nconst const5 = 'my string';", 'const5', 'my string', $doc],
+            ["/**\n *\n */\nconst const5 = 'my string';", 'const5', 'my string', $doc4],
             [
                 "/**\n * Short desc.\n * \n * Long description.\n * \n * @param string \$param1 Some param1.\n */\nconst const6 = 'my string';",
                 'const6',
                 'my string',
-                $doc
+                $doc5,
             ],
         );
     }
