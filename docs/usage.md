@@ -56,10 +56,10 @@ Detailed documentation about some generators:
 Please refer to the API documentation for a complete list of code generators and their capabilities.
 See the following examples for a quick reference.
 
-[File generator](/php/filegenerator.md)
+[File generator](/docs/php/filegenerator.md)
 
-[Class generator](/php/oop/generate-class.md)
+[Class generator](/docs/php/oop/generate-class.md)
 
-[Interface generator](/php/oop/generate-interface.md)
+[Interface generator](/docs/php/oop/generate-interface.md)
 
-[Trait generator](/php/oop/generate-trait.md)
+[Trait generator](/docs/php/oop/generate-trait.md)
