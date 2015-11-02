@@ -78,7 +78,8 @@ class FunctionGenerator extends AbstractEntityGenerator
         $code = array();
 
         if ($this->namespace !== null) {
-            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace . ' {';
+            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace;
+            $code[] = '{';
             $code[] = null;
 
             // Temporarily add one more level of indentation.
@@ -90,7 +91,8 @@ class FunctionGenerator extends AbstractEntityGenerator
             $code[] = $doc;
         }
 
-        $code[] = $this->generateSignature() . ' ' . $this->generateBody();
+        $code[] = $this->generateSignature();
+        $code[] = $this->getIndentation() . $this->generateBody();
 
         if ($this->namespace !== null) {
             // Set back the indentation.

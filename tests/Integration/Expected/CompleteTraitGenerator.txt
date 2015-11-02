@@ -1,4 +1,5 @@
-namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
+namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures
+{
 
     /**
      * Short trait description.
@@ -8,7 +9,8 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
      *
      * @baseAnnotation testing
      */
-    trait MyTrait {
+    trait MyTrait
+    {
 
         use tt1;
 
@@ -36,7 +38,8 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
          * @param mixed $param1 Parameter 1.
          * @param string $param2 Parameter 2.
          */
-        public function __construct($param1, $param2 = null) {
+        public function __construct($param1, $param2 = null)
+        {
         }
 
         /**
@@ -45,7 +48,8 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
          * @param array $array The array to count.
          * @return integer
          */
-        protected function protectedFunc(array $array = array()) {
+        protected function protectedFunc(array $array = array())
+        {
             return count($array);
         }
 
@@ -58,7 +62,8 @@ namespace Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures {
          * @return boolean
          * @throws \InvalidArgumentException If the date is in the past.
          */
-        final private static function privateStaticFunction(\DateTime $datetime) {
+        final private static function privateStaticFunction(\DateTime $datetime)
+        {
             if ($datetime < new \DateTime('now')) {
                 throw new \InvalidArgumentException('Date is in the past.');
             }

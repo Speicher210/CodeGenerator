@@ -46,6 +46,6 @@ class FunctionGeneratorTest extends TestCase {
 
         $fr = new ReflectionFunction('Wingu\OctopusCore\CodeGenerator\Tests\Integration\Fixtures\testFunctionNoDocComment');
         $fg = FunctionGenerator::fromReflection($fr);
-        $this->assertSame("namespace Wingu\\OctopusCore\\CodeGenerator\\Tests\\Integration\\Fixtures {\n\n    function testFunctionNoDocComment() {\n\n    }\n}", $fg->generate());
+        $this->assertSame("namespace Wingu\\OctopusCore\\CodeGenerator\\Tests\\Integration\\Fixtures\n{\n\n    function testFunctionNoDocComment()\n    {\n\n    }\n}", $fg->generate());
     }
 }

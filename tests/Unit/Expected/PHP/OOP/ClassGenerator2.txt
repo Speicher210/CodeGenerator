@@ -1,5 +1,7 @@
-namespace myNamespace {
+namespace myNamespace
+{
 
-    abstract class c2 implements ie1, ie2 {
+    abstract class c2 implements ie1, ie2
+    {
     }
 }

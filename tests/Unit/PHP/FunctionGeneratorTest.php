@@ -64,15 +64,15 @@ class FunctionGeneratorTest extends TestCase
             ->method('generate')
             ->will($this->returnValue($docResult));
         return array(
-            ['func1', 'myns', null, [], null, "namespace myns {\n\n    function func1() {\n    }\n}"],
-            ['func2', null, 'return __DIR__;', [], null, "function func2() {\n    return __DIR__;\n}"],
+            ['func1', 'myns', null, [], null, "namespace myns\n{\n\n    function func1()\n    {\n    }\n}"],
+            ['func2', null, 'return __DIR__;', [], null, "function func2()\n{\n    return __DIR__;\n}"],
             [
                 'func3',
                 null,
                 "\$var = 1;\nreturn \$var1;",
                 [$this->getParamForSignature(1)],
                 null,
-                "function func3(\$param1) {\n    \$var = 1;\nreturn \$var1;\n}"
+                "function func3(\$param1)\n{\n    \$var = 1;\nreturn \$var1;\n}"
             ],
             [
                 'func4',
@@ -80,7 +80,7 @@ class FunctionGeneratorTest extends TestCase
                 ['$var = 1;', 'return $var1;'],
                 [$this->getParamForSignature(1)],
                 null,
-                "function func4(\$param1) {\n    \$var = 1;\n    return \$var1;\n}"
+                "function func4(\$param1)\n{\n    \$var = 1;\n    return \$var1;\n}"
             ],
             [
                 'func4',
@@ -88,7 +88,7 @@ class FunctionGeneratorTest extends TestCase
                 ['$var = 1;', 'return $var1;'],
                 [$this->getParamForSignature(1)],
                 $doc,
-                $docResult . "\nfunction func4(\$param1) {\n    \$var = 1;\n    return \$var1;\n}"
+                $docResult . "\nfunction func4(\$param1)\n{\n    \$var = 1;\n    return \$var1;\n}"
             ],
         );
     }

@@ -144,7 +144,8 @@ class InterfaceGenerator extends AbstractObject
         $code = array();
 
         if ($this->namespace !== null) {
-            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace . ' {';
+            $code[] = $this->getIndentation() . 'namespace ' . $this->namespace;
+            $code[] = '{';
             $code[] = null;
 
             // Temporarily add one more level of indentation.
@@ -165,7 +166,8 @@ class InterfaceGenerator extends AbstractObject
             $line .= ' extends ' . implode(', ', $this->extends);
         }
 
-        $code[] = $line . ' {';
+        $code[] = $line;
+        $code[] = $indentation . '{';
 
         // Interface constants.
         $interfaceElements = $this->generateConstantsLines();
